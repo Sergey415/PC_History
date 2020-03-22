@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Компьютерная техника</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="SHORTCUT ICON" href="images/icon.png" type="image/x-icon">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+  </head>
+  <header id="shapka">
+        <div><img src="images/logo.png" alt="" id="logo"></div>
+          <div class="s">
+            <a href="" id="link1"><button id="b1" class="btn btn-secondary" title="Страница 'Главная'">Главная</button></a>
+            <a href="" id="link2"><button id="b2" class="btn btn-secondary" title="Игра PACMAN">PACMAN</button></a>
+        </div>
+        <div class="s">
+          <a href="Links/Portfolio/index.html" target="blank" id="link5" title="Портфолио автора"><button id="b5" class="btn btn-secondary">Портфолио</button></a>
+        </div>
+        <div class="s">
+            <a href="" id="link3"><button id="b3" class="btn btn-secondary" title="Игра FLEPPY BIRDS">FLEPPY BIRDS</button></a>
+            <a href="Links/игра змейка/index.html" target="blank" id="link4" title="Игра змейка"><button id="b4" class="btn btn-secondary">Змейка</button></a>
+        </div>
+        <div class="forma">
+            <input type="text" id="login" placeholder="Логин:" class="text-center">
+            <input type="password" id="pass" placeholder="Пароль:" class="text-center"></input>
+            <button id="registr" class="btn btn-secondary">Регистрация</button>
+            <button id="autorization" class="btn btn-secondary">Вход</button>
+        </div>
+    </header>
+  <body id="body">
+    <main id="many">
+      <div id="pages">
+        <aside>
+          <h4><details><summary>Компьютеры</summary>
+          <h5><a href="#info1" class="page">Что такое ПК?</a></h5> 
+          <h5><a href="#" class="page">История ПК</a></h5>
+          <h5><a href="#" class="page">Развитие ПК</a></h5>
+          </details></h4>
+        </aside>
+
+      </div>
+      <div id="info">
+        <div id="info1">
+          <h3 class="text-center">Что такое ПК?</h3>
+          <details><summary onclick="spoiler()">Устройство или система, способная выполнять заданную последовательность операций.<br>
+          <div style="display: flex; flex-wrap: wrap;">
+          <textarea name="comment" id="otz1" placeholder="Ваш отзыв:" onclick="inp()"></textarea>
+          <button id="but1"><img src="images/button_submit.png" id="img1"></button>
+          <img src="images/likeheartwhite.png" alt="" id="but2" onclick="like()">
+          </div>
+          </summary>
+          <p>Это чаще всего операции численных расчётов и манипулирования данными.</p>
+          <p>Однако сюда относятся и операции ввода-вывода.</p>
+          <p>Описание последовательности операций называется программой</p>
+          <div style="display: flex; flex-wrap: wrap;"> 
+          <textarea name="comment" placeholder="Ваш отзыв:" id="otz1_down"></textarea>
+          <button><img src="images/button_submit.png" id="but1_down"></button>
+          <img src="images/likeheartwhite.png" alt="" id="but2_down" onclick="like()">
+          </div>
+          </details>
+        </div>
+        <br>
+        <div id="info2">..</div>
+        <div id="info3">,,</div>
+        <div id="info4">]]</div>
+        <div id="info5">[[</div>
+        <div id="info6">==</div>
+        <div id="info7">++</div>
+        <div id="info8">--</div>
+      </div>
+    </main>
+    <footer>
+      <div id="down">
+        <div id="cont1">@Все права защищены</div>
+        <div id="cont2">Автор: Перекрёстов Сергей</div>
+        <div id="cont3">Соц.сети: 
+          <a href="https://vk.com/id450872412" target="blank" title="Ссылка на ВК"><img src="images/vk.png" alt="" id="vk"></a>
+          <a href="https://www.instagram.com/sperekriostov/" target="blank" title="Ссылка на инстаграмм"><img src="images/instagram.png" alt="" id="inst"></a>
+        </div>
+        <div id="cont4">Июнь 2020 г.</div>
+      </div>
+    </footer>
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+  </body>
+  <script>
+    var a = 1
+    var likes = 1
+    function spoiler() {
+      a--
+      
+      if(a%2==0) {
+      var val = document.getElementById("otz1").value
+        otz1_down.value = val
+        otz1.style.display="none"
+        but1.style.display="none"
+        but2.style.display="none"
+      }
+      if(a%2!=0) {
+        var val1 = document.getElementById("otz1_down").value
+        otz1.value = val1
+        otz1.style.display="block"
+        but1.style.display="block"
+        but2.style.display="block"
+      }
+    }
+    function inp() {
+        a++
+      if(a%2==0) {
+        var val = document.getElementById("otz1").value
+        otz1_down.value = val
+      }
+      if(a%2!=0) {
+        var val1 = document.getElementById("otz1_down").value
+        otz1.value = val1
+      }
+    }
+    function like() {
+      likes--
+      if(a%2==0) {
+      var val = document.getElementById("otz1").value
+        otz1_down.value = val
+      }
+      if(a%2!=0) {
+        var val1 = document.getElementById("otz1_down").value
+        otz1.value = val1
+      }
+      if(likes%2==0) {
+              but2.src = "images/likeheartred.png"
+              but2_down.src = "images/likeheartred.png"
+      }
+      if(likes%2!=0) {
+        but2.src = "images/likeheartwhite.png"
+        but2_down.src = "images/likeheartwhite.png"
+      }
+    }
+  </script>
+</html>
