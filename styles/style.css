@@ -6,8 +6,12 @@
     justify-content: space-around;
     flex-wrap: wrap-reverse;
     background-image: url(https://i.gifer.com/8YVs.gif);
+    background-size: auto;
+    background-position: center;
 }
-#body{background-color: rgba(128,128,128,0.3);}
+#body{
+    background-color: rgba(128,128,128,0.3);
+}
 .s{
     display: flex;
     flex-direction: column;
@@ -102,6 +106,7 @@
     color: white;
     background-color: rgba(0,0,0,0.9);
     font-family: 'Playfair Display', serif;
+    width: auto;
 }
 .page{
     color: white;
@@ -114,7 +119,7 @@
 #info{
     display: flex;
     flex-direction: column;
-    margin-left: 50px;
+    margin-left: 170px;
     margin-top: 20px;
     font-family: 'Playfair Display', serif;
     background-color: rgba(234,174,39,0.6);
@@ -147,7 +152,9 @@ summary{
 }
 @media (max-width:1125px)
 { #logo{display:none;}
-
+#info{
+    margin-left: 0px;
+}
  }
  @media (max-width:310px) {
     #b1{
@@ -172,7 +179,7 @@ summary{
     }
     #info{
         width: auto;
-        margin-left: 0px;
+        box-align: center
     }
  }
  #info1{
@@ -182,7 +189,7 @@ summary{
      border:3px solid rgb(136, 97, 52);
      border-top-right-radius: 15px;
      border-top-left-radius: 15px;
-     font-size: 25px;
+     font-size: 18px;
  }
 #img1 {
     width: 80px;
@@ -259,11 +266,9 @@ details[open] p {
     0%   {opacity: 0;}
     100% {opacity: 1;}
   }
-@media(max-width:1270px) {
-    #shapka {
-        flex-direction: column-reverse;
-    }
-    #logo {
-        display: none;
+@media(max-width:978px) {
+    #pages{
+        display: flex;
+        flex-grow: 1;
     }
 }
