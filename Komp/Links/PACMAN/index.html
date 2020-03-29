@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <style>
+        canvas {
+            border: 1px solid black
+        }
+        #text {
+            color: rgb(0,0,0);
+            font-size: 30px;
+        }
+        #easy {
+            height: 40px;
+            width: 80px;
+            background-color: green;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+        #normal {
+            height: 40px;
+            width: 80px;
+            background-color: yellow;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+        #hard {
+            height: 40px;
+            width: 80px;
+            background-color: red;
+            border-radius: 5px;
+            font-size: 20px;
+        }
+        #menu {
+            display: flex;
+            justify-content: center;
+        }
+    </style>
+    <div id="menu">
+    <span id="text">Счёт: <span id="shet"></span></span>
+    <button onclick="Easy()" id="easy">Easy</button>
+    <button onclick="Normal()" id="normal">Normal</button>
+    <button onclick="Hard()" id="hard">Hard</button>
+    </div>
+    <canvas id="canvas" width="1350" height="540"></canvas>
+    <script>
+        ctx = canvas.getContext("2d")
+        const w = canvas.clientWidth
+        const h = canvas.clientHeight
+        const size = 30
+        const min = 0
+        const max = 1
+        let chet = 0
+        let x, y
+        let nuli = 0
+        let time = 80
+        char = {
+            move: "right",
+            x: 0,
+            y: 0
+        }
+        ghost1 = {
+            move: "up",
+            x: 14,
+            y: 3
+        }
+        ghost2 = {
+            move: "up",
+            x: 15,
+            y: 3
+        }
+        ghost3 = {
+            move: "up",
+            x: 14,
+            y: 4
+        }
+        ghost4 = {
+            move: "up",
+            x: 15,
+            y: 4
+        }
+        stroke = [
+            [3, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 1, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 1,0,0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0,0,0],
+            [0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 4, 4, 4, 4, 0, 0, 1, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0,0,0],
+            [0, 1, 0, 1, 0, 1, 1, 1, 0, 0, 1, 1, 0, 4, 5, 6, 4, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0],
+            [0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 4, 7, 8, 4, 0, 10, 1, 0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 1, 1, 1, 0, 1, 0,0,0],
+            [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,0,0],
+            [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,0,0],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0,0,1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0,0,1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 1, 1, 1, 1, 1, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 10, 0, 1, 0, 0,0,1],
+            [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0,0,0],
+            [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0,0,0],
+            [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 1, 0, 0, 10, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0,0,0],
+            [0, 0, 0, 10, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 1, 0, 1, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 1, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0,0,0],
+            [0, 0, 0, 0, 0, 1, 1, 1, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 1, 1, 0, 1, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0,0,0],
+            [0, 1, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 1, 0, 0,0,0],
+            [0, 0, 0, 0, 0, 1, 0, 0, 1, 1, 1, 0, 0, 1, 1, 1, 1, 0, 1, 10, 0, 0, 1, 1, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,0,0],
+            [0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 10, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1, 1, 0, 0, 0, 0, 1, 1, 1, 0, 0, 10, 0, 1, 1, 1, 1, 1, 1, 0,0,0]
+        ]
+        ctx.fillStyle = "rgba(0,0,0,0.5)"
+        ctx.fillRect(0,0,size,size)
+        function Easy() {
+            time = 80
+        }
+        function Normal() {
+            time = 50
+        }
+        function Hard() {
+            time = 0
+        }
+        function step() {
+            ctx.clearRect(0, 0, w, h);
+            //Отрисовка препятствий
+            for (i = 0; i < stroke.length; i++) {
+                for (j = 0; j < stroke[0].length + 3; j++) {
+                    if (stroke[i][j] == 1) {
+                        let stenka = new Image()
+                        stenka.src = "textures/stena.jpg"
+                        ctx.drawImage(stenka,size*j,size*i,size,size)
+                    }
+                    //Отрисовка пакмена
+                    if (stroke[i][j] == 3) {
+                        ctx.beginPath()
+                        ctx.fillStyle = "yellow"
+                        ctx.arc(size * j + size / 2, size * i + size / 2, 15, 0, Math.PI * 2);
+                        ctx.fill()
+                    }
+                    //Отрисовка стенки приведений
+                    if (stroke[i][j] == 4) {
+                        let ghost_stena = new Image()
+                        ghost_stena.src = "textures/stena_ghost.jpg"
+                        ctx.drawImage(ghost_stena,size*j,size*i,size,size)
+                    }
+                    //Отрисовка приведений
+                    if (stroke[i][j] == 5) {
+                        let ghost_blue = new Image()
+                        ghost_blue.src = "textures/blue_ghost.jpg"
+                        ctx.drawImage(ghost_blue,size*j,size*i,size,size)
+                    }
+                    if (stroke[i][j] == 6) {
+                        let ghost_red = new Image()
+                        ghost_red.src = "textures/red_ghost.jpg"
+                        ctx.drawImage(ghost_red,size*j,size*i,size,size)
+                    }
+                    if (stroke[i][j] == 7) {
+                       let ghost_pink = new Image()
+                       ghost_pink.src = "textures/pink_ghost.jpg"
+                       ctx.drawImage(ghost_pink,size*j,size*i,size,size)
+                    }
+                    if (stroke[i][j] == 8) {
+                        let ghost_orange = new Image() 
+                        ghost_orange.src = "textures/orange_ghost.jpg"
+                        ctx.drawImage(ghost_orange,size*j,size*i,size,size)
+                    }
+                    //Конец отрисовки приведений
+                    //Отрисовка точек(маленьких)
+                    if (stroke[i][j] == 0) {
+                        ctx.beginPath()
+                        ctx.arc(size * j + size / 2, size * i + size / 2, 5, 0, Math.PI * 2);
+                        ctx.stroke()
+                    }
+                    if (stroke[i][j] == 9) {
+                        ctx.fillStyle = "white"
+                        ctx.fillRect(size * j, size * i, size, size)
+                    }
+                    if(stroke[i][j]==10) {
+                        ctx.fillStyle = "black"
+                        ctx.beginPath()
+                        ctx.arc(size * j + size / 2, size * i + size / 2, 10, 0, Math.PI * 2);
+                        ctx.fill()
+                    }
+                }
+            }
+            //Направление пакмэна и Проверка на столкновение с границами поля
+            if (char.move == "right" && stroke[char.y][char.x + 1] != 1 && stroke[char.y][char.x + 1] != 4 && stroke[char.y][char.x] != stroke[char.y][44]) {
+                if (stroke[char.y][char.x + 1] == 0 || stroke[char.y][char.x+1]==10) {
+                    nuli++
+                    chet += 20
+                    shet.textContent = chet
+                    if (chet % 100 == 0) {
+                        setTimeout(() => {
+                            shet.style.color = "red"
+                        }, 0);
+                        setTimeout(() => {
+                            shet.style.color = "blue"
+                        }, 400);
+                        setTimeout(() => {
+                            shet.style.color = "green"
+                        }, 800);
+                        setTimeout(() => {
+                            shet.style.color = "black"
+                        }, 1600);
+                    }
+                }
+                stroke[char.y][char.x] = 9
+                char.x += 1;
+                stroke[char.y][char.x] = 3
+            }
+            if (char.move == "left" && stroke[char.y][char.x - 1] != 1 && stroke[char.y][char.x - 1] != 4 && stroke[char.y][char.x] != stroke[char.y][0]) {
+                if (stroke[char.y][char.x - 1] == 0 || stroke[char.y][char.x-1]==10) {
+                    nuli++
+                    chet += 20
+                    shet.textContent = chet
+                    if (chet % 100 == 0) {
+                        setTimeout(() => {
+                            shet.style.color = "red"
+                        }, 0);
+                        setTimeout(() => {
+                            shet.style.color = "blue"
+                        }, 400);
+                        setTimeout(() => {
+                            shet.style.color = "green"
+                        }, 800);
+                        setTimeout(() => {
+                            shet.style.color = "black"
+                        }, 1600);
+                    }
+                }
+                stroke[char.y][char.x] = 9
+                char.x -= 1;
+                stroke[char.y][char.x] = 3
+
+            }
+            if (char.move == "down" && char.y != stroke.length - 1 && stroke[char.y + 1][char.x] != 1 && stroke[char.y + 1][char.x] != 4) {
+                if (stroke[char.y + 1][char.x] == 0 || stroke[char.y+1][char.x]==10) {
+                    nuli++
+                    chet += 20
+                    shet.textContent = chet
+                    if (chet % 100 == 0) {
+                        setTimeout(() => {
+                            shet.style.color = "red"
+                        }, 0);
+                        setTimeout(() => {
+                            shet.style.color = "blue"
+                        }, 400);
+                        setTimeout(() => {
+                            shet.style.color = "green"
+                        }, 800);
+                        setTimeout(() => {
+                            shet.style.color = "black"
+                        }, 1600);
+                    }
+                }
+                stroke[char.y][char.x] = 9
+                char.y += 1;
+                stroke[char.y][char.x] = 3
+            }
+            if (char.move == "up" && char.y != 0 && stroke[char.y - 1][char.x] != 1 && stroke[char.y - 1][char.x] != 4) {
+                if (stroke[char.y - 1][char.x] == 0 || stroke[char.y-1][char.x]==10) {
+                    nuli++
+                    chet += 20
+                    shet.textContent = chet
+                    if (chet % 100 == 0) {
+                        setTimeout(() => {
+                            shet.style.color = "red"
+                        }, 0);
+                        setTimeout(() => {
+                            shet.style.color = "blue"
+                        }, 400);
+                        setTimeout(() => {
+                            shet.style.color = "green"
+                        }, 800);
+                        setTimeout(() => {
+                            shet.style.color = "black"
+                        }, 1600);
+                    }
+                }
+                stroke[char.y][char.x] = 9
+                char.y -= 1;
+                stroke[char.y][char.x] = 3
+            }
+            setTimeout(() => {
+                //Движение приведений
+                //Движения первого
+                //движение вверх
+                if (ghost1.move == "up") {
+                    if(stroke[ghost1.y-1][ghost1.x]==0) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x]=11
+                    }  else {
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==11) {
+                        stroke[ghost1.y][ghost1.x] = 0
+                    } 
+                    if(stroke[ghost1.y-1][ghost1.x]==10) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x] = 12
+                    } else if (stroke[ghost1.y-1][ghost1.x]!=10 && stroke[ghost1.y-1][ghost1.x]!=0){
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==12) {
+                        stroke[ghost1.y][ghost1.x] = 10
+                    }
+
+                        ghost1.y -= 1;
+                        stroke[ghost1.y][ghost1.x] = 5
+                    
+
+                    if (ghost1.y == 0 || stroke[ghost1.y - 1][ghost1.x] == 1 || stroke[ghost1.y - 1][ghost1.x] == 4 || stroke[ghost1.y - 1][ghost1.x] == 6 || stroke[ghost1.y - 1][ghost1.x] == 7 || stroke[ghost1.y - 1][ghost1.x] == 8) {
+                        ghost1.move = "down"
+                        var rand = Math.floor(Math.random() * (max - min + 1)) + min
+                        if (rand == 0 && stroke[ghost1.y][ghost1.x] != stroke[ghost1.y][44] && stroke[ghost1.y][ghost1.x + 1] != 1 && stroke[ghost1.y][ghost1.x + 1] != 4 && stroke[ghost1.y][ghost1.x + 1] != 6 && stroke[ghost1.y][ghost1.x + 1] != 7 && stroke[ghost1.y][ghost1.x + 1] != 8) {
+                            ghost1.move = "right"
+                        }
+                        if (rand == 1 && ghost1.x != 0 && stroke[ghost1.y][ghost1.x - 1] != 6 && stroke[ghost1.y][ghost1.x - 1] != 1 && stroke[ghost1.y][ghost1.x - 1] != 7 && stroke[ghost1.y][ghost1.x - 1] != 8) {
+                            ghost1.move = "left"
+                        }
+                    }
+                }
+                //движение вниз
+                if (ghost1.move == "down") {
+                    if(stroke[ghost1.y+1][ghost1.x]==0) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x] = 11 
+                    } else {
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==11) {
+                        stroke[ghost1.y][ghost1.x]=0
+                    }
+                    if(stroke[ghost1.y+1][ghost1.x]==10) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x] = 12
+                    } else if (stroke[ghost1.y+1][ghost1.x]!=10 && stroke[ghost1.y+1][ghost1.x]!=0){
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==12) {
+                        stroke[ghost1.y][ghost1.x] = 10
+                    } 
+                        
+                        ghost1.y += 1;
+                        stroke[ghost1.y][ghost1.x] = 5
+                    
+
+                    if (ghost1.y == stroke.length - 1 || stroke[ghost1.y + 1][ghost1.x] == 1 || stroke[ghost1.y + 1][ghost1.x] == 4 || stroke[ghost1.y + 1][ghost1.x] == 6 || stroke[ghost1.y + 1][ghost1.x] == 7 || stroke[ghost1.y + 1][ghost1.x] == 8) {
+                        ghost1.move = "up"
+                        var rand = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand == 0 && stroke[ghost1.y][ghost1.x] != stroke[ghost1.y][44] && stroke[ghost1.y][ghost1.x + 1] != 1 && stroke[ghost1.y][ghost1.x + 1] != 4 && stroke[ghost1.y][ghost1.x + 1] != 6 && stroke[ghost1.y][ghost1.x + 1] != 7 && stroke[ghost1.y][ghost1.x + 1] != 8) {
+                        ghost1.move = "right"
+                    }
+                    if (rand == 1 && ghost1.x != 0 && stroke[ghost1.y][ghost1.x - 1] != 6 && stroke[ghost1.y][ghost1.x - 1] != 1 && stroke[ghost1.y][ghost1.x - 1] != 7 && stroke[ghost1.y][ghost1.x - 1] != 8) {
+                        ghost1.move = "left"
+                    }
+                }
+
+                //движение вправо
+                if (ghost1.move == "right") {
+                    if(stroke[ghost1.y][ghost1.x+1]==0) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x]=11
+                    } else {
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==11) {
+                        stroke[ghost1.y][ghost1.x]=0
+                    } 
+                    if(stroke[ghost1.y][ghost1.x+1]==10) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x] = 12
+                    } else if (stroke[ghost1.y][ghost1.x+1]!=10 && stroke[ghost1.y][ghost1.x+1]!=0){
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==12) {
+                        stroke[ghost1.y][ghost1.x] = 10
+                    }
+                        
+                        ghost1.x += 1
+                        stroke[ghost1.y][ghost1.x] = 5
+                
+
+                    if (stroke[ghost1.y][ghost1.x] == stroke[ghost1.y][44] || stroke[ghost1.y][ghost1.x + 1] == 1 || stroke[ghost1.y][ghost1.x + 1] == 4 || stroke[ghost1.y][ghost1.x + 1] == 6 || stroke[ghost1.y][ghost1.x + 1] == 7 || stroke[ghost1.y][ghost1.x + 1] == 8) {
+                        ghost1.move = "left"
+                        var rand = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand == 0 && ghost1.y != stroke.length - 1 && stroke[ghost1.y + 1][ghost1.x] != 6 && stroke[ghost1.y + 1][ghost1.x] != 1 && stroke[ghost1.y + 1][ghost1.x] != 7 && stroke[ghost1.y + 1][ghost1.x] != 8) {
+                        ghost1.move = "down"
+                    }
+                    if (rand == 1 && ghost1.y != 0 && stroke[ghost1.y - 1][ghost1.x] != 6 && stroke[ghost1.y - 1][ghost1.x] != 1 && stroke[ghost1.y - 1][ghost1.x] != 7 && stroke[ghost1.y - 1][ghost1.x] != 8) {
+                        ghost1.move = "up"
+                    }
+                }
+                //движение влево
+                if (ghost1.move == "left") {
+                    if(stroke[ghost1.y][ghost1.x-1]==0) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x]=11
+                    } else {
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==11) {
+                        stroke[ghost1.y][ghost1.x]=0
+                    } 
+                    if(stroke[ghost1.y][ghost1.x-1]==10) {
+                        stroke[ghost1.y][ghost1.x] = 9
+                        stroke[ghost1.y][ghost1.x] = 12
+                    } else if (stroke[ghost1.y][ghost1.x-1]!=10 && stroke[ghost1.y][ghost1.x-1]!=0){
+                        stroke[ghost1.y][ghost1.x] = 9
+                    }
+                    if(stroke[ghost1.y][ghost1.x]==12) {
+                        stroke[ghost1.y][ghost1.x] = 10
+                    }
+                        ghost1.x -= 1
+                        stroke[ghost1.y][ghost1.x] = 5
+
+                    if (ghost1.x == 0 || stroke[ghost1.y][ghost1.x - 1] == 1 || stroke[ghost1.y][ghost1.x - 1] == 4 || stroke[ghost1.y][ghost1.x - 1] == 6 || stroke[ghost1.y][ghost1.x - 1] == 7 || stroke[ghost1.y][ghost1.x - 1] == 8) {
+                        ghost1.move = "right"
+                        var rand = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand == 0 && ghost1.y != stroke.length - 1 && ghost1.y != stroke.length - 1 && stroke[ghost1.y + 1][ghost1.x] != 6 && stroke[ghost1.y + 1][ghost1.x] != 1 && stroke[ghost1.y + 1][ghost1.x] != 7 && stroke[ghost1.y + 1][ghost1.x] != 8) {
+                        ghost1.move = "down"
+                    }
+                    if (rand == 1 && ghost1.y != 0 && ghost1.y != 0 && stroke[ghost1.y - 1][ghost1.x] != 6 && stroke[ghost1.y - 1][ghost1.x] != 1 && stroke[ghost1.y - 1][ghost1.x] != 7 && stroke[ghost1.y - 1][ghost1.x] != 8) {
+                        ghost1.move = "up"
+                    }
+                }
+                //Конец движений первого
+
+            }, 3000);
+          setTimeout(() => {
+                //Движения второго
+                //движение вверх
+                if (ghost2.move == "up") {
+                    if(stroke[ghost2.y-1][ghost2.x]==0) {
+                        stroke[ghost2.y][ghost2.x] = 9
+                        stroke[ghost2.y][ghost2.x]=22
+                    } else {
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==22) {
+                        stroke[ghost2.y][ghost2.x]=0
+                    }
+                    if(stroke[ghost2.y-1][ghost2.x]==10) {
+                        stroke[ghost2.y][ghost2.x] = 9
+                        stroke[ghost2.y][ghost2.x] = 23
+                    } else if (stroke[ghost2.y-1][ghost2.x]!=10 && stroke[ghost2.y-1][ghost2.x]!=0){
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==23) {
+                        stroke[ghost2.y][ghost2.x] = 10
+                    }
+                    ghost2.y -= 1;
+                    stroke[ghost2.y][ghost2.x] = 6
+                    if (ghost2.y == 0 || stroke[ghost2.y - 1][ghost2.x] == 1 || stroke[ghost2.y - 1][ghost2.x] == 4 || stroke[ghost2.y - 1][ghost2.x] == 5 || stroke[ghost2.y - 1][ghost2.x] == 7 || stroke[ghost2.y - 1][ghost2.x] == 8) {
+                        ghost2.move = "down"
+                        var rand1 = Math.floor(Math.random() * (max - min + 1)) + min
+                        if (rand1 == 0 && stroke[ghost2.y][ghost2.x] != stroke[ghost2.y][44] && stroke[ghost2.y][ghost2.x + 1] != 1 && stroke[ghost2.y][ghost2.x + 1] != 4 && stroke[ghost2.y][ghost2.x + 1] != 5 && stroke[ghost2.y][ghost2.x + 1] != 7 && stroke[ghost2.y][ghost2.x + 1] != 8) {
+                            ghost2.move = "right"
+                        }
+                        if (rand1 == 1 && ghost2.x != 0 && stroke[ghost2.y][ghost2.x - 1] != 5 && stroke[ghost2.y][ghost2.x - 1] != 1 && stroke[ghost2.y][ghost2.x - 1] != 7 && stroke[ghost2.y][ghost2.x - 1] != 8) {
+                            ghost2.move = "left"
+                        }
+                    }
+                }
+                //движение вниз
+                if (ghost2.move == "down") {
+                    if(stroke[ghost2.y+1][ghost2.x]==0) {
+                    stroke[ghost2.y][ghost2.x] = 9
+                    stroke[ghost2.y][ghost2.x]=22                        
+                    } else {
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==22) {
+                        stroke[ghost2.y][ghost2.x]=0
+                    }
+                    if(stroke[ghost2.y+1][ghost2.x]==10) {
+                        stroke[ghost2.y][ghost2.x] = 9
+                        stroke[ghost2.y][ghost2.x] = 23
+                    } else if (stroke[ghost2.y+1][ghost2.x]!=10 && stroke[ghost2.y+1][ghost2.x]!=0){
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==23) {
+                        stroke[ghost2.y][ghost2.x] = 10
+                    }
+                    ghost2.y += 1;
+                    stroke[ghost2.y][ghost2.x] = 6
+                    if (ghost2.y == stroke.length - 1 || stroke[ghost2.y + 1][ghost2.x] == 1 || stroke[ghost2.y + 1][ghost2.x] == 4 || stroke[ghost2.y + 1][ghost2.x] == 5 || stroke[ghost2.y + 1][ghost2.x] == 7 || stroke[ghost2.y + 1][ghost2.x] == 8) {
+                        ghost2.move = "up"
+                        var rand1 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand1 == 0 && stroke[ghost2.y][ghost2.x] != stroke[ghost2.y][44] && stroke[ghost2.y][ghost2.x + 1] != 1 && stroke[ghost2.y][ghost2.x + 1] != 4 && stroke[ghost2.y][ghost2.x + 1] != 5 && stroke[ghost2.y][ghost2.x + 1] != 7 && stroke[ghost2.y][ghost2.x + 1] != 8) {
+                        ghost2.move = "right"
+                    }
+                    if (rand1 == 1 && ghost2.x != 0 && stroke[ghost2.y][ghost2.x - 1] != 5 && stroke[ghost2.y][ghost2.x - 1] != 1 && stroke[ghost2.y][ghost2.x - 1] != 7 && stroke[ghost2.y][ghost2.x - 1] != 8) {
+                        ghost2.move = "left"
+                    }
+                }
+
+                //движение направо
+                if (ghost2.move == "right") {
+                    if(stroke[ghost2.y][ghost2.x+1]==0) {
+                    stroke[ghost2.y][ghost2.x] = 9
+                    stroke[ghost2.y][ghost2.x]=22                        
+                    } else {
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==22) {
+                        stroke[ghost2.y][ghost2.x]=0
+                    }
+                    if(stroke[ghost2.y][ghost2.x+1]==10) {
+                        stroke[ghost2.y][ghost2.x] = 9
+                        stroke[ghost2.y][ghost2.x] = 23
+                    } else if (stroke[ghost2.y][ghost2.x+1]!=10 && stroke[ghost2.y][ghost2.x+1]!=0){
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==23) {
+                        stroke[ghost2.y][ghost2.x] = 10
+                    }
+                    ghost2.x += 1
+                    stroke[ghost2.y][ghost2.x] = 6
+                    if (stroke[ghost2.y][ghost2.x] == stroke[ghost2.y][44] || stroke[ghost2.y][ghost2.x + 1] == 1 || stroke[ghost2.y][ghost2.x + 1] == 4 || stroke[ghost2.y][ghost2.x + 1] == 5 || stroke[ghost2.y][ghost2.x + 1] == 7 || stroke[ghost2.y][ghost2.x + 1] == 8) {
+                        ghost2.move = "left"
+                        var rand1 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand1 == 0 && ghost2.y != stroke.length - 1 && stroke[ghost2.y + 1][ghost2.x] != 5 && stroke[ghost2.y + 1][ghost2.x] != 1 && stroke[ghost2.y + 1][ghost2.x] != 7 && stroke[ghost2.y + 1][ghost2.x] != 8) {
+                        ghost2.move = "down"
+                    }
+                    if (rand1 == 1 && ghost2.y != 0 && stroke[ghost2.y - 1][ghost2.x] != 5 && stroke[ghost2.y - 1][ghost2.x] != 1 && stroke[ghost2.y - 1][ghost2.x] != 7 && stroke[ghost2.y - 1][ghost2.x] != 8) {
+                        ghost2.move = "up"
+                    }
+                }
+                //движение налево
+                if (ghost2.move == "left") {
+                    if(stroke[ghost2.y][ghost2.x-1]==0) {
+                    stroke[ghost2.y][ghost2.x] = 9
+                    stroke[ghost2.y][ghost2.x]=22                        
+                    } else {
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==22) {
+                        stroke[ghost2.y][ghost2.x]=0
+                    }
+                    if(stroke[ghost2.y][ghost2.x-1]==10) {
+                        stroke[ghost2.y][ghost2.x] = 9
+                        stroke[ghost2.y][ghost2.x] = 23
+                    } else if (stroke[ghost2.y][ghost2.x-1]!=10 && stroke[ghost2.y][ghost2.x-1]!=0){
+                        stroke[ghost2.y][ghost2.x] = 9
+                    }
+                    if(stroke[ghost2.y][ghost2.x]==23) {
+                        stroke[ghost2.y][ghost2.x] = 10
+                    }
+                    ghost2.x -= 1
+                    stroke[ghost2.y][ghost2.x] = 6
+                    if (ghost2.x == 0 || stroke[ghost2.y][ghost2.x - 1] == 1 || stroke[ghost2.y][ghost2.x - 1] == 4 || stroke[ghost2.y][ghost2.x - 1] == 5 || stroke[ghost2.y][ghost2.x - 1] == 7 || stroke[ghost2.y][ghost2.x - 1] == 8) {
+                        ghost2.move = "right"
+                        var rand1 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand1 == 0 && ghost2.y != stroke.length - 1 && ghost2.y != stroke.length - 1 && stroke[ghost2.y + 1][ghost2.x] != 5 && stroke[ghost2.y + 1][ghost2.x] != 1 && stroke[ghost2.y + 1][ghost2.x] != 7 && stroke[ghost2.y + 1][ghost2.x] != 8) {
+                        ghost2.move = "down"
+                    }
+                    if (rand1 == 1 && ghost2.y != 0 && ghost2.y != 0 && stroke[ghost2.y - 1][ghost2.x] != 5 && stroke[ghost2.y - 1][ghost2.x] != 1 && stroke[ghost2.y - 1][ghost2.x] != 7 && stroke[ghost2.y - 1][ghost2.x] != 8) {
+                        ghost2.move = "up"
+                    }
+                }
+                //Конец движений второго
+            }, 3000);
+          setTimeout(() => {
+                //Движения ТРЕТЬЕГО
+                //движение вверх
+                if (ghost3.move == "up") {
+                    if(stroke[ghost3.y-1][ghost3.x]==0) {
+                    stroke[ghost3.y][ghost3.x] = 9
+                    stroke[ghost3.y][ghost3.x]=33                        
+                    } else {
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==33) {
+                        stroke[ghost3.y][ghost3.x]=0
+                    }
+                    if(stroke[ghost3.y-1][ghost3.x]==10) {
+                        stroke[ghost3.y][ghost3.x] = 9
+                        stroke[ghost3.y][ghost3.x] = 34
+                    } else if (stroke[ghost3.y-1][ghost3.x]!=10 && stroke[ghost3.y-1][ghost3.x]!=0){
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==34) {
+                        stroke[ghost3.y][ghost3.x] = 10
+                    }
+                    ghost3.y -= 1;
+                    stroke[ghost3.y][ghost3.x] = 7
+                    if (ghost3.y == 0 || stroke[ghost3.y - 1][ghost3.x] == 1 || stroke[ghost3.y - 1][ghost3.x] == 4 || stroke[ghost3.y - 1][ghost3.x] == 5 || stroke[ghost3.y - 1][ghost3.x] == 6 || stroke[ghost3.y - 1][ghost3.x] == 8) {
+                        ghost3.move = "down"
+                        var rand2 = Math.floor(Math.random() * (max - min + 1)) + min
+                        if (rand2 == 0 && stroke[ghost3.y][ghost3.x] != stroke[ghost3.y][44] && stroke[ghost3.y][ghost3.x + 1] != 1 && stroke[ghost3.y][ghost3.x + 1] != 4 && stroke[ghost3.y][ghost3.x + 1] != 5 && stroke[ghost3.y][ghost3.x + 1] != 6 && stroke[ghost3.y][ghost3.x + 1] != 8) {
+                            ghost3.move = "right"
+                        }
+                        if (rand2 == 1 && ghost3.x != 0 && stroke[ghost3.y][ghost3.x - 1] != 5 && stroke[ghost3.y][ghost3.x - 1] != 1 && stroke[ghost3.y][ghost3.x - 1] != 6 && stroke[ghost3.y][ghost3.x - 1] != 8) {
+                            ghost3.move = "left"
+                        }
+                    }
+                }
+                //движение вниз
+                if (ghost3.move == "down") {
+                    if(stroke[ghost3.y+1][ghost3.x]==0) {
+                    stroke[ghost3.y][ghost3.x] = 9
+                    stroke[ghost3.y][ghost3.x]=33                        
+                    } else {
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==33) {
+                        stroke[ghost3.y][ghost3.x]=0
+                    }
+                    if(stroke[ghost3.y+1][ghost3.x]==10) {
+                        stroke[ghost3.y][ghost3.x] = 9
+                        stroke[ghost3.y][ghost3.x] = 34
+                    } else if (stroke[ghost3.y+1][ghost3.x]!=10 && stroke[ghost3.y+1][ghost3.x]!=0){
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==34) {
+                        stroke[ghost3.y][ghost3.x] = 10
+                    }
+                    ghost3.y += 1;
+                    stroke[ghost3.y][ghost3.x] = 7
+                    if (ghost3.y == stroke.length - 1 || stroke[ghost3.y + 1][ghost3.x] == 1 || stroke[ghost3.y + 1][ghost3.x] == 4 || stroke[ghost3.y + 1][ghost3.x] == 5 || stroke[ghost3.y + 1][ghost3.x] == 6 || stroke[ghost3.y + 1][ghost3.x] == 8) {
+                        ghost3.move = "up"
+                        var rand2 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand2 == 0 && stroke[ghost3.y][ghost3.x] != stroke[ghost3.y][44] && stroke[ghost3.y][ghost3.x + 1] != 1 && stroke[ghost3.y][ghost3.x + 1] != 4 && stroke[ghost3.y][ghost3.x + 1] != 5 && stroke[ghost3.y][ghost3.x + 1] != 6 && stroke[ghost3.y][ghost3.x + 1] != 8) {
+                        ghost3.move = "right"
+                    }
+                    if (rand2 == 1 && ghost3.x != 0 && stroke[ghost3.y][ghost3.x - 1] != 5 && stroke[ghost3.y][ghost3.x - 1] != 1 && stroke[ghost3.y][ghost3.x - 1] != 6 && stroke[ghost3.y][ghost3.x - 1] != 8) {
+                        ghost3.move = "left"
+                    }
+                }
+
+                //движение направо
+                if (ghost3.move == "right") {
+                    if(stroke[ghost3.y][ghost3.x+1]==0) {
+                    stroke[ghost3.y][ghost3.x] = 9
+                    stroke[ghost3.y][ghost3.x]=33                        
+                    } else {
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==33) {
+                        stroke[ghost3.y][ghost3.x]=0
+                    }
+                    if(stroke[ghost3.y][ghost3.x+1]==10) {
+                        stroke[ghost3.y][ghost3.x] = 9
+                        stroke[ghost3.y][ghost3.x] = 34
+                    } else if (stroke[ghost3.y][ghost3.x+1]!=10 && stroke[ghost3.y][ghost3.x+1]!=0){
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==34) {
+                        stroke[ghost3.y][ghost3.x] = 10
+                    }
+                    ghost3.x += 1
+                    stroke[ghost3.y][ghost3.x] = 7
+                    if (stroke[ghost3.y][ghost3.x] == stroke[ghost3.y][44] || stroke[ghost3.y][ghost3.x + 1] == 1 || stroke[ghost3.y][ghost3.x + 1] == 4 || stroke[ghost3.y][ghost3.x + 1] == 5 || stroke[ghost3.y][ghost3.x + 1] == 6 || stroke[ghost3.y][ghost3.x + 1] == 8) {
+                        ghost3.move = "left"
+                        var rand2 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand2 == 0 && ghost3.y != stroke.length - 1 && stroke[ghost3.y + 1][ghost3.x] != 5 && stroke[ghost3.y + 1][ghost3.x] != 1 && stroke[ghost3.y + 1][ghost3.x] != 6 && stroke[ghost3.y + 1][ghost3.x] != 8) {
+                        ghost3.move = "down"
+                    }
+                    if (rand2 == 1 && ghost3.y != 0 && stroke[ghost3.y - 1][ghost3.x] != 5 && stroke[ghost3.y - 1][ghost3.x] != 1 && stroke[ghost3.y - 1][ghost3.x] != 6 && stroke[ghost3.y - 1][ghost3.x] != 8) {
+                        ghost3.move = "up"
+                    }
+                }
+                //движение налево
+                if (ghost3.move == "left") {
+                    if(stroke[ghost3.y][ghost3.x-1]==0) {
+                        stroke[ghost3.y][ghost3.x] = 9
+                        stroke[ghost3.y][ghost3.x]=33                        
+                    } else {
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==33) {
+                        stroke[ghost3.y][ghost3.x]=0
+                    }
+                    if(stroke[ghost3.y][ghost3.x-1]==10) {
+                        stroke[ghost3.y][ghost3.x] = 9
+                        stroke[ghost3.y][ghost3.x] = 34
+                    } else if (stroke[ghost3.y][ghost3.x-1]!=10 && stroke[ghost3.y][ghost3.x-1]!=0){
+                        stroke[ghost3.y][ghost3.x] = 9
+                    }
+                    if(stroke[ghost3.y][ghost3.x]==34) {
+                        stroke[ghost3.y][ghost3.x] = 10
+                    }
+                    ghost3.x -= 1
+                    stroke[ghost3.y][ghost3.x] = 7
+                    if (ghost3.x == 0 || stroke[ghost3.y][ghost3.x - 1] == 1 || stroke[ghost3.y][ghost3.x - 1] == 4 || stroke[ghost3.y][ghost3.x - 1] == 5 || stroke[ghost3.y][ghost3.x - 1] == 6 || stroke[ghost3.y][ghost3.x - 1] == 8) {
+                        ghost3.move = "right"
+                        var rand2 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand2 == 0 && ghost3.y != stroke.length - 1 && stroke[ghost3.y + 1][ghost3.x] != 5 && stroke[ghost3.y + 1][ghost3.x] != 1 && stroke[ghost3.y + 1][ghost3.x] != 6 && stroke[ghost3.y + 1][ghost3.x] != 8) {
+                        ghost3.move = "down"
+                    }
+                    if (rand2 == 1 && ghost3.y != 0 && stroke[ghost3.y - 1][ghost3.x] != 5 && stroke[ghost3.y - 1][ghost3.x] != 1 && stroke[ghost3.y - 1][ghost3.x] != 6 && stroke[ghost3.y - 1][ghost3.x] != 8) {
+                        ghost3.move = "up"
+                    }
+                }
+                //Конец движений третьего
+            }, 3000);
+          setTimeout(() => {
+                //Движения четвёртого
+                //движение вверх
+                if (ghost4.move == "up") {
+                    if(stroke[ghost4.y-1][ghost4.x]==0) {
+                    stroke[ghost4.y][ghost4.x] = 9
+                    stroke[ghost4.y][ghost4.x]=44                        
+                    } else {
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==44) {
+                        stroke[ghost4.y][ghost4.x]=0
+                    }
+                    if(stroke[ghost4.y-1][ghost4.x]==10) {
+                        stroke[ghost4.y][ghost4.x] = 9
+                        stroke[ghost4.y][ghost4.x] = 45
+                    } else if (stroke[ghost4.y-1][ghost4.x]!=10 && stroke[ghost4.y-1][ghost4.x]!=0){
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==45) {
+                        stroke[ghost4.y][ghost4.x] = 10
+                    }
+                    ghost4.y -= 1;
+                    stroke[ghost4.y][ghost4.x] = 8
+                    if (ghost4.y == 0 || stroke[ghost4.y - 1][ghost4.x] == 1 || stroke[ghost4.y - 1][ghost4.x] == 4 || stroke[ghost4.y - 1][ghost4.x] == 6 || stroke[ghost4.y - 1][ghost4.x] == 7 || stroke[ghost4.y - 1][ghost4.x] == 5) {
+                        ghost4.move = "down"
+                        var rand3 = Math.floor(Math.random() * (max - min + 1)) + min
+                        if (rand3 == 0 && stroke[ghost4.y][ghost4.x] != stroke[ghost4.y][44] && stroke[ghost4.y][ghost4.x + 1] != 1 && stroke[ghost4.y][ghost4.x + 1] != 4 && stroke[ghost4.y][ghost4.x + 1] != 6 && stroke[ghost4.y][ghost4.x + 1] != 7 && stroke[ghost4.y][ghost4.x + 1] != 5) {
+                            ghost4.move = "right"
+                        }
+                        if (rand3 == 1 && ghost4.x != 0 && stroke[ghost4.y][ghost4.x - 1] != 6 && stroke[ghost4.y][ghost4.x - 1] != 1 && stroke[ghost4.y][ghost4.x - 1] != 7 && stroke[ghost4.y][ghost4.x - 1] != 5) {
+                            ghost4.move = "left"
+                        }
+                    }
+                }
+                //движение вниз
+                if (ghost4.move == "down") {
+                    if(stroke[ghost4.y+1][ghost4.x]==0) {
+                    stroke[ghost4.y][ghost4.x] = 9
+                    stroke[ghost4.y][ghost4.x]=44                        
+                    } else {
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==44) {
+                        stroke[ghost4.y][ghost4.x]=0
+                    }
+                    if(stroke[ghost4.y+1][ghost4.x]==10) {
+                        stroke[ghost4.y][ghost4.x] = 9
+                        stroke[ghost4.y][ghost4.x] = 45
+                    } else if (stroke[ghost4.y+1][ghost4.x]!=10 && stroke[ghost4.y+1][ghost4.x]!=0){
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==45) {
+                        stroke[ghost4.y][ghost4.x] = 10
+                    }
+                    ghost4.y += 1;
+                    stroke[ghost4.y][ghost4.x] = 8
+                    if (ghost4.y == stroke.length - 1 || stroke[ghost4.y + 1][ghost4.x] == 1 || stroke[ghost4.y + 1][ghost4.x] == 4 || stroke[ghost4.y + 1][ghost4.x] == 6 || stroke[ghost4.y + 1][ghost4.x] == 7 || stroke[ghost4.y + 1][ghost4.x] == 5) {
+                        ghost4.move = "up"
+                        var rand3 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand3 == 0 && stroke[ghost4.y][ghost4.x] != stroke[ghost4.y][44] && stroke[ghost4.y][ghost4.x + 1] != 1 && stroke[ghost4.y][ghost4.x + 1] != 4 && stroke[ghost4.y][ghost4.x + 1] != 6 && stroke[ghost4.y][ghost4.x + 1] != 7 && stroke[ghost4.y][ghost4.x + 1] != 5) {
+                        ghost4.move = "right"
+                    }
+                    if (rand3 == 1 && ghost4.x != 0 && stroke[ghost4.y][ghost4.x - 1] != 6 && stroke[ghost4.y][ghost4.x - 1] != 1 && stroke[ghost4.y][ghost4.x - 1] != 7 && stroke[ghost4.y][ghost4.x - 1] != 5) {
+                        ghost4.move = "left"
+                    }
+                }
+
+                //движение вправо
+                if (ghost4.move == "right") {
+                    if(stroke[ghost4.y][ghost4.x+1]==0) {
+                    stroke[ghost4.y][ghost4.x] = 9
+                    stroke[ghost4.y][ghost4.x]=44                        
+                    } else {
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==44) {
+                        stroke[ghost4.y][ghost4.x]=0
+                    }
+                    if(stroke[ghost4.y][ghost4.x+1]==10) {
+                        stroke[ghost4.y][ghost4.x] = 9
+                        stroke[ghost4.y][ghost4.x] = 45
+                    } else if (stroke[ghost4.y][ghost4.x+1]!=10 && stroke[ghost4.y][ghost4.x+1]!=0){
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==45) {
+                        stroke[ghost4.y][ghost4.x] = 10
+                    }
+                    ghost4.x += 1
+                    stroke[ghost4.y][ghost4.x] = 8
+                    if (stroke[ghost4.y][ghost4.x] == stroke[ghost4.y][44] || stroke[ghost4.y][ghost4.x + 1] == 1 || stroke[ghost4.y][ghost4.x + 1] == 4 || stroke[ghost4.y][ghost4.x + 1] == 6 || stroke[ghost4.y][ghost4.x + 1] == 7 || stroke[ghost4.y][ghost4.x + 1] == 5) {
+                        ghost4.move = "left"
+                        var rand3 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand3 == 0 && ghost4.y != stroke.length - 1 && stroke[ghost4.y + 1][ghost4.x] != 6 && stroke[ghost4.y + 1][ghost4.x] != 1 && stroke[ghost4.y + 1][ghost4.x] != 7 && stroke[ghost4.y + 1][ghost4.x] != 5) {
+                        ghost4.move = "down"
+                    }
+                    if (rand3 == 1 && ghost4.y != 0 && stroke[ghost4.y - 1][ghost4.x] != 6 && stroke[ghost4.y - 1][ghost4.x] != 1 && stroke[ghost4.y - 1][ghost4.x] != 7 && stroke[ghost4.y - 1][ghost4.x] != 5) {
+                        ghost4.move = "up"
+                    }
+                }
+                //движение влево
+                if (ghost4.move == "left") {
+                    if(stroke[ghost4.y][ghost4.x-1]==0) {
+                    stroke[ghost4.y][ghost4.x] = 9
+                    stroke[ghost4.y][ghost4.x]=44                        
+                    } else {
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    
+                    if(stroke[ghost4.y][ghost4.x]==44) {
+                        stroke[ghost4.y][ghost4.x]=0
+                    }
+                    if(stroke[ghost4.y][ghost4.x-1]==10) {
+                        stroke[ghost4.y][ghost4.x] = 9
+                        stroke[ghost4.y][ghost4.x] = 45
+                    } else if (stroke[ghost4.y][ghost4.x-1]!=10 && stroke[ghost4.y][ghost4.x-1]!=0){
+                        stroke[ghost4.y][ghost4.x] = 9
+                    }
+                    if(stroke[ghost4.y][ghost4.x]==45) {
+                        stroke[ghost4.y][ghost4.x] = 10
+                    }
+                    ghost4.x -= 1
+                    stroke[ghost4.y][ghost4.x] = 8
+                    if (ghost4.x == 0 || stroke[ghost4.y][ghost4.x - 1] == 1 || stroke[ghost4.y][ghost4.x - 1] == 4 || stroke[ghost4.y][ghost4.x - 1] == 6 || stroke[ghost4.y][ghost4.x - 1] == 7 || stroke[ghost4.y][ghost4.x - 1] == 5) {
+                        ghost4.move = "right"
+                        var rand3 = Math.floor(Math.random() * (max - min + 1)) + min
+                    }
+                    if (rand3 == 0 && ghost4.y != stroke.length - 1 && stroke[ghost4.y + 1][ghost4.x] != 6 && stroke[ghost4.y + 1][ghost4.x] != 1 && stroke[ghost4.y + 1][ghost4.x] != 7 && stroke[ghost4.y + 1][ghost4.x] != 5) {
+                        ghost4.move = "down"
+                    }
+                    if (rand3 == 1 && ghost4.y != 0 && stroke[ghost4.y - 1][ghost4.x] != 6 && stroke[ghost4.y - 1][ghost4.x] != 1 && stroke[ghost4.y - 1][ghost4.x] != 7 && stroke[ghost4.y - 1][ghost4.x] != 5) {
+                        ghost4.move = "up"
+                    }
+                }
+                //Конец движений четвёртого
+            }, 3000);
+            //Проверка на столкновение с приведениями
+            if (stroke[char.y][char.x] == stroke[ghost1.y][ghost1.x] || stroke[char.y][char.x] == stroke[ghost2.y][ghost2.x] || stroke[char.y][char.x]==stroke[ghost3.y][ghost3.x] || stroke[char.y][char.x]==stroke[ghost4.y][ghost4.x]) {
+                ctx.clearRect(char.x, char.y, size, size)
+                alert("GAME OVER!!!")
+                window.location.reload()
+            }
+            //Конец проверки
+            //Выигрыш
+                    if(nuli==300) {
+                        alert("You win!!!")
+                        AnimationEffect(stop)
+                        delete probel
+                    }
+            //Конец выигрыша
+    anim =  setTimeout(() => {
+                requestAnimationFrame(step)
+            }, time);
+        }
+        setTimeout(() => {
+                //Стирание преграды приведений
+                stroke[2][14] = 9
+                stroke[2][15] = 9
+                stroke[2][13] = 9
+                stroke[2][16] = 9
+                stroke[3][13] = 9
+                stroke[3][16] = 9
+                stroke[4][13] = 9
+                stroke[4][16] = 9
+                stroke[5][13] = 9
+                stroke[5][14] = 9
+                stroke[5][15] = 9
+                stroke[5][16] = 9
+            }, 3000);
+        step()
+        var probel = 1
+        document.addEventListener("keydown",e => {
+            if (e.key == "s" || e.key == "ы") {
+                char.move = "down"
+            }
+            if (e.key == "a" || e.key == "ф") {
+                char.move = "left"
+            }
+            if (e.key == "d" || e.key == "в") {
+                char.move = "right"
+            }
+            if (e.key == "w" || e.key == "ц") {
+                char.move = "up"
+            }
+            if(e.key == " ") {
+                probel--
+                if(probel%2==0) {
+                    clearTimeout(anim,time)
+                }
+                if(probel%2!=0) {
+                    anim =  setTimeout(() => {
+                         requestAnimationFrame(step)
+                    }, time);
+                }
+            }
+        })
+    </script>
+</body>
+
+</html>

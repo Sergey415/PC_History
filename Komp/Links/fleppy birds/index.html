@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    canvas{
+        border: solid 1px black
+    }
+</style>
+<body>
+    <canvas width="288" height="512" id="canvas"></canvas>
+    <script>
+        let shet = 0
+        let play = 1
+        if(play==1) {
+        const w = canvas.width
+        const h = canvas.height
+            x=10;
+            y=150
+        ctx = canvas.getContext("2d")
+        let bird = new Image()
+        bird.src = "flappy_bird_bird.png"
+        let bg = new Image()
+        bg.src = "flappy_bird_bg.png"
+        let fg = new Image()
+        fg.src = "flappy_bird_fg.png"
+        let pipeBottom = new Image()
+        pipeBottom.src = "flappy_bird_pipeBottom.png"
+        let pipeUp = new Image()
+        pipeUp.src = "flappy_bird_pipeUp.png"
+        let pole_x = w
+        class Pipe {
+            x;
+            y;
+            constructor() {
+                this.x = w
+            }
+        }
+        pipe = []
+        pipe[0] = new Pipe()
+        pipe[0].x+=30
+        pipe[1] = new Pipe()
+        pipe[1].x+=200
+        function draw() {
+            ctx.drawImage(bg,pole_x-w,0)
+            ctx.drawImage(bg,pole_x,0)
+            pole_x-=1
+            if(pole_x==0) pole_x = w
+                for(i=0;i<pipe.length;i++) {
+                ctx.drawImage(pipeUp,pipe[i].x,pipe[i].y)
+                ctx.drawImage(pipeBottom, pipe[i].x,pipe[i].y+pipeUp.height+90)
+                pipe[i].x-=1
+                if(pipe[i].x==0-pipeUp.width){
+                    pipe[i].x = w
+                    pipe[i].y = Math.floor(Math.random()*(0 - -200+1)) + -200
+                }
+                 if(x + bird.width >= pipe[i].x && x <= pipe[i].x + pipeUp.width && (y <= pipe[i].y + pipeUp.height || y + bird.height >= pipe[i].y + pipeUp.height + 90) || y + bird.height >= h - fg.height || y <=0) {
+                    alert("Вы проиграли:(")
+                    window.location.reload()
+                    break
+                }
+            }
+            
+            ctx.drawImage(fg,0,h-110)
+            ctx.drawImage(bird,x,y)
+            y+=1
+            requestAnimationFrame(draw)
+        }
+        canvas.addEventListener("click", function() {
+            y-=20
+        })
+        pipeUp.onload = draw
+        } 
+    </script>
+</body>
+</html>
