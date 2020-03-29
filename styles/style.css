@@ -1,11 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Playfair+Display&display=swap');
 @import url('https://fonts.googleapis.com/css?family=Source+Code+Pro&display=swap');
+html,body{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+}
 #shapka{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap-reverse;
     background-image: url(https://i.gifer.com/8YVs.gif);
+    background-position: center;
 }
 #body{
     background-color: rgba(128,128,128,0.3);
@@ -17,12 +24,10 @@
     margin-top: 30px;
     align-items: center;
 }
-.forma{
+#forma{
     display: flex;
     flex-direction: column;
-    flex-wrap: wrap;
     font-family: 'Source Code Pro', monospace;
-    flex-grow: 0.2;
     margin-top: 10px;
 }
 #many{
@@ -153,6 +158,10 @@ summary{
 #info{
     margin-left: 0px;
 }
+#forma{
+    width: 290px;
+    align-self: center;
+}
  }
  @media (max-width:310px) {
     #b1{
@@ -175,9 +184,11 @@ summary{
         width: 200px;
        
     }
+    #forma{
+        width: 200px;
+    }
     #info{
         width: auto;
-        box-align: center
     }
  }
  #info1{
@@ -245,16 +256,8 @@ summary{
     height: 65px;
 }
 @media(max-width:1125px) {
-    .forma{
-        flex-grow: 1;
-    }
     #shapka{
         flex-direction: column-reverse;
-    }
-}
-@media(max-width:224px) {
-    #registr,#autorization,#pass,#login{
-        width: 150px;
     }
 }
 details[open] p,#komp_info1 {
@@ -287,4 +290,9 @@ details[open] p,#komp_info1 {
 #content{
     display: flex;
     justify-content: center;
+}
+@media(max-width:224px) {
+    #forma{
+        flex-grow: 1;
+    }
 }

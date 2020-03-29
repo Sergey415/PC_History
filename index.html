@@ -29,7 +29,7 @@
     <a href="Links/игра змейка/index.html" target="blank" id="link4" title="Игра змейка"><button id="b4"
         class="btn btn-secondary">Змейка</button></a>
   </div>
-  <div class="forma">
+  <div id="forma">
     <input type="text" id="login" placeholder="Логин:" class="text-center">
     <input type="password" id="pass" placeholder="Пароль:" class="text-center"></input>
     <button id="registr" class="btn btn-secondary">Регистрация</button>
@@ -58,22 +58,17 @@
           <details>
             <summary onclick="spoiler()">Устройство или система, способная выполнять заданную последовательность
               операций.<br>
-              <div style="display: flex; flex-wrap: wrap;">
-                <textarea name="comment" id="otz1" placeholder="Ваш отзыв:" onclick="inp()"></textarea>
-                <button id="but1" ><img src="images/button_submit.png" id="img1"></button>
-                <img src="images/likeheartwhite.png" alt="" id="but2" onclick="like()">
-              </div>
             </summary>
             <p>Это чаще всего операции численных расчётов и манипулирования данными.</p>
             <img src="images/What PC.jpg" alt="" id="komp_info1">
             <p>Однако сюда относятся и операции ввода-вывода.</p>
             <p>Описание последовательности операций называется программой</p>
-            <div style="display: flex; flex-wrap: wrap;">
-              <textarea name="comment" placeholder="Ваш отзыв:" id="otz1_down"></textarea>
-              <button ><img src="images/button_submit.png" id="but1_down"></button>
-              <img src="images/likeheartwhite.png" alt="" id="but2_down" onclick="like()">
-            </div>
           </details>
+                <div style="display: flex; flex-wrap: wrap;">
+                <textarea name="comment" id="otz1" placeholder="Ваш отзыв:"></textarea>
+                <button id="but1"><img src="images/button_submit.png" id="img1"></button>
+                <img src="images/likeheartwhite.png" alt="" id="but2" onclick="like()">
+              </div>
         </div>
         <br>
         <div id="info2">..</div>
@@ -113,46 +108,9 @@
     crossorigin="anonymous"></script>
 </body>
 <script>
-  var a = 1
   var likes = 1
-  function spoiler() {
-    a--
-    if (a % 2 == 0) {
-      var val = document.getElementById("otz1").value
-      otz1_down.value = val
-      otz1.style.display = "none"
-      but1.style.display = "none"
-      but2.style.display = "none"
-    }
-    if (a % 2 != 0) {
-      var val1 = document.getElementById("otz1_down").value
-      otz1.value = val1
-      otz1.style.display = "block"
-      but1.style.display = "block"
-      but2.style.display = "block"
-    }
-  }
-  function inp() {
-    a++
-    if (a % 2 == 0) {
-      var val = document.getElementById("otz1").value
-      otz1_down.value = val
-    }
-    if (a % 2 != 0) {
-      var val1 = document.getElementById("otz1_down").value
-      otz1.value = val1
-    }
-  }
-  function like() {
+function like() {
     likes--
-    if (a % 2 == 0) {
-      var val = document.getElementById("otz1").value
-      otz1_down.value = val
-    }
-    if (a % 2 != 0) {
-      var val1 = document.getElementById("otz1_down").value
-      otz1.value = val1
-    }
     if (likes % 2 == 0) {
       but2.src = "images/likeheartred.png"
       but2_down.src = "images/likeheartred.png"
@@ -163,5 +121,4 @@
     }
   }
 </script>
-
 </html>
