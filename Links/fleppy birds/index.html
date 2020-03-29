@@ -59,7 +59,8 @@
                 }
                  if(x + bird.width >= pipe[i].x && x <= pipe[i].x + pipeUp.width && (y <= pipe[i].y + pipeUp.height || y + bird.height >= pipe[i].y + pipeUp.height + 90) || y + bird.height >= h - fg.height || y <=0) {
                     alert("Вы проиграли:(")
-                    AnimationEffect(stop)
+                    window.location.reload()
+                    break
                 }
             }
             
@@ -72,9 +73,7 @@
             y-=20
         })
         pipeUp.onload = draw
-        } else {
-            alert("ds kj[")
-        }
+        } 
     </script>
 </body>
 </html>

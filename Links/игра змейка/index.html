@@ -102,7 +102,8 @@
                 char.y[char.y.length-i] = char.y[char.y.length-i-1]
                 if(char.x[0]==char.x[i+1] && char.y[0]==char.y[i]) {
                     alert("Game over!")
-                    clearTimeout(anim,45)
+                    window.location.reload()
+                    break
                 }
             }
             for (i = 0; i < count_food; i++) {
@@ -115,7 +116,7 @@
             ctx.fillStyle = "rgb(0,230,0)"
             ctx.fillRect(char.x[0], char.y[0], size, size)
             
-          let anim = setTimeout(() => {
+           setTimeout(() => {
                 requestAnimationFrame(step)
             }, 45);
 

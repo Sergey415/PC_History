@@ -1,0 +1,10 @@
+body {
+    background: #ADFFFC;
+}
+#buttons{
+    display: flex;
+    flex-direction: column;
+}
+#click2,#click3,#click4,#click5,#click6,#click7,#click8,#click9,#click10{
+    display: none;
+}
