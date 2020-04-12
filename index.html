@@ -2,12 +2,15 @@
 <html lang="en">
 
 <head>
-  <title>Компьютерная техника!!!!!</title>
+  <title>Компьютерная техника</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <link rel="stylesheet" href="styles/style.css">
-  <link rel="SHORTCUT ICON" href="images/icon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
+  <meta name="description" content="Развитие компьютеров и их аксессуаров">
+  <meta name="author" content="Перекрестов Сергей">
+  <meta name="keywords" content="Компьютерная техника, ПК, История ПК, Первый компьютер, Мышь, Первая компьютерная мышь, для чего нужна ОС">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -32,7 +35,7 @@
   <div id="forma">
     <input type="text" id="login" placeholder="Логин:" class="text-center">
     <input type="password" id="pass" placeholder="Пароль:" class="text-center"></input>
-    <button id="registr" class="btn btn-secondary">Регистрация</button>
+    <button id="registr" class="btn btn-secondary" onclick="reg()">Регистрация</button>
     <button id="autorization" class="btn btn-secondary">Вход</button>
   </div>
 </header>
@@ -120,5 +123,15 @@ function like() {
       but2_down.src = "images/likeheartwhite.png"
     }
   }
+</script>
+<script>
+ async function reg() {
+  let logins = document.getElementById("login").value
+  let password = document.getElementById("pass").value
+  let r = await fetch("http://BD/index.php?login="+logins+"&&password="+password)
+  a = (await r.text())
+  document.write(a)
+  }
+  
 </script>
 </html>
