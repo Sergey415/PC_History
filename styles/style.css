@@ -11,7 +11,8 @@ html,body{
     display: flex;
     justify-content: space-around;
     flex-wrap: wrap-reverse;
-    background-image: url(https://i.gifer.com/8YVs.gif);
+    background-image: url(https://i.gifer.com/E1c3.gif);
+    background-size: cover;
     background-position: center;
 }
 #body{
@@ -46,32 +47,32 @@ html,body{
 #b1 {
     width: 300px;
     border-radius: 15px 15px 0px 0px;
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
     font-family: 'Playfair Display', serif;
 }
 #b2 {
     width: 300px;
     border-radius: 0px 0px 15px 15px;
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
     font-family: 'Oswald', sans-serif;
 }
 #b3 {
     width: 300px;
     border-radius: 15px 15px 0px 0px; 
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
     font-family: 'Oswald', sans-serif;
 }
 #b4 {
     width: 300px;
     border-radius: 0px 0px 15px 15px;
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
     font-family: 'Playfair Display', serif;
 }
 #b5 {
     margin-top: 20px;
     width: 300px;
     border-radius: 15px;
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
     font-family: 'Playfair Display', serif;
 }
 #logo {
@@ -81,7 +82,7 @@ html,body{
 
 #autorization{
     border-radius: 0px 0px 15px 15px;
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
 }
 #vk{
     height: 30px;
@@ -97,7 +98,7 @@ html,body{
 }
 #registr{
     border-radius: 0px 0px 0px 0px;
-    background-color: rgba(178,118,93,0.6);
+    background-color: rgba(178,118,93,0.4);
 }
 #pass{
     outline: none;
