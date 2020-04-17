@@ -16,7 +16,10 @@ html,body{
     background-position: center;
 }
 #body{
-    background-color: rgba(128,128,128,0.3);
+    background-image: url(/images/back.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
 }
 .s{
     display: flex;
@@ -34,7 +37,6 @@ html,body{
 #many{
     display: flex;
     flex-wrap: wrap;
-    background-color: rgba(234,174,39,0.4);
 }
 #down{
     display: flex;
@@ -108,13 +110,11 @@ html,body{
 }
 #pages {
     color: white;
-    background-color: rgba(0,0,0,0.9);
     font-family: 'Playfair Display', serif;
     width: auto;
 }
 .page{
     color: white;
-    margin-left: 25px;
 }
 .page:hover {
     color: rgba(250, 135, 90, 0.9);
@@ -126,9 +126,8 @@ html,body{
     box-align: center;
     margin-top: 20px;
     font-family: 'Playfair Display', serif;
-    background-color: rgba(234,174,39,0.6);
     border-radius: 15px;
-    margin-left: 150px;
+    margin-left: 100px;
 }
 summary{
     outline: none;
@@ -296,4 +295,12 @@ details[open] p,#komp_info1 {
     #forma{
         flex-grow: 1;
     }
+}
+#success{
+    background-color: rgba(0,128,0,0.5);
+    display: none;
+}
+#notsuccess{
+    background-color: rgba(255,0,0,0.8);
+    display: none;
 }

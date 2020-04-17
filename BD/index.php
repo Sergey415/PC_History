@@ -13,4 +13,5 @@
         $test[] = $row;
         };
         print json_encode($test, JSON_UNESCAPED_UNICODE);
+        
 ?>
