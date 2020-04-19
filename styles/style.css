@@ -17,9 +17,7 @@ html,body{
 }
 #body{
     background-image: url(back.jpg);
-    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
 }
 .s{
     display: flex;
@@ -112,6 +110,7 @@ html,body{
     color: white;
     font-family: 'Playfair Display', serif;
     width: auto;
+    background-color: rgba(0,0,0,0.3);
 }
 .page{
     color: white;
@@ -127,7 +126,8 @@ html,body{
     margin-top: 20px;
     font-family: 'Playfair Display', serif;
     border-radius: 15px;
-    margin-left: 100px;
+    margin-left: 80px;
+    background-color: rgba(255,255,255,0.5);
 }
 summary{
     outline: none;
@@ -162,6 +162,10 @@ summary{
     width: 290px;
     align-self: center;
 }
+#block_user{
+    align-self: center;
+}
+
  }
  @media (max-width:310px) {
     #b1{
@@ -299,8 +303,33 @@ details[open] p,#komp_info1 {
 #success{
     background-color: rgba(0,128,0,0.5);
     display: none;
+    color: white;
 }
 #notsuccess{
     background-color: rgba(255,0,0,0.8);
     display: none;
+}
+#user{
+    height: 80px;
+    width: auto;
+}
+#block_user{
+    display: none;
+    margin-top: 15px;
+}
+    #warning{
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        position: absolute;
+        }
+        #warning>h1{
+        position: absolute;
+        text-align: center;
+        width: 50%;
+        }
+#lik {
+    outline: none;
+    background-color: rgba(255,255,255,0.1);
+    border: none;
 }

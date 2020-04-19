@@ -15,8 +15,10 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
-  <h1 class="text-center" id="success">Авторизация успешна!</h1>
-  <h1 class="text-center" id="notsuccess">Неправильный(е) логин и(или пароль!)</h1>
+<div id="warning">
+  <h1 id="success">Авторизация успешна!</h1>
+  <h1 id="notsuccess">Неправильный(е) логин и(или пароль!)</h1>
+  </div>
 <header id="shapka">
   <div><img src="images/logo.png" alt="" id="logo"></div>
   <div class="s">
@@ -40,12 +42,16 @@
     <button id="registr" class="btn btn-secondary">Регистрация</button>
     <button id="autorization" class="btn btn-secondary" onclick="aut()">Вход</button>
   </div>
+  <div id="block_user">
+    <img src="images/user.png" alt="" id="user">
+    <button class="btn btn-secondary" id="bexit" onclick="Exit()">Выход</button>
+  </div>
 </header>
 
 <body id="body">
   <main id="many">
     <div id="pages">
-      <aside>
+      <aside id="aside">
         <h4>
           <details>
             <summary>Компьютеры</summary>
@@ -70,9 +76,9 @@
             <p>Описание последовательности операций называется программой</p>
           </details>
                 <div style="display: flex; flex-wrap: wrap;">
-                <textarea name="comment" id="otz1" placeholder="Ваш отзыв:"></textarea>
-                <button id="but1"><img src="images/button_submit.png" id="img1"></button>
-                <img src="images/likeheartwhite.png" alt="" id="but2" onclick="like()">
+                <textarea name="comment" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+                <button id="but1"disabled="disabled"><img src="images/button_submit.png" id="img1" ></button>
+                <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" id="but2"></button>
               </div>
         </div>
         <br>
@@ -118,11 +124,9 @@ function like() {
     likes--
     if (likes % 2 == 0) {
       but2.src = "images/likeheartred.png"
-      but2_down.src = "images/likeheartred.png"
     }
     if (likes % 2 != 0) {
       but2.src = "images/likeheartwhite.png"
-      but2_down.src = "images/likeheartwhite.png"
     }
   }
 </script>
@@ -138,12 +142,26 @@ function like() {
       notsuccess.style.display = "none"
   }, 3000);
   } else {
-    success.style.display = "block"
-    setTimeout(() => {
+        setTimeout(() => {
       success.style.display = "none"
   }, 3000);
+    block_user.style.display = "flex"
+    block_user.style.flexDirection = "column"
+    block_user.style.flexWrap = "wrap"
+    success.style.display = "block"
+    forma.style.display = "none"
+    but1.removeAttribute("disabled")
+    otz1.removeAttribute("disabled")
+    lik.removeAttribute("disabled")
   }
   }
- 
+  async function Exit() {
+    a = null
+    but1.setAttribute("disabled", "disabled")
+    otz1.setAttribute("disabled", "disabled")
+    lik.setAttribute("disabled", "disabled")
+    block_user.style.display = "none"
+    forma.style.display = "flex"
+  }
 </script>
 </html>
