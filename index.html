@@ -39,7 +39,7 @@
   <div id="forma">
     <input type="text" id="login" placeholder="Логин:" class="text-center">
     <input type="password" id="pass" placeholder="Пароль:" class="text-center"></input>
-    <button id="registr" class="btn btn-secondary">Регистрация</button>
+    <button id="registr" class="btn btn-secondary" onclick="reg()"><a href = "Links/registration.html" target="blank" id="r">Регистрация</a></button>
     <button id="autorization" class="btn btn-secondary" onclick="aut()">Вход</button>
   </div>
   <div id="block_user">
@@ -131,10 +131,13 @@ function like() {
   }
 </script>
 <script>
+  async function reg() {
+
+  }
  async function aut() {
   let logins = document.getElementById("login").value
   let password = document.getElementById("pass").value
-  let r = await fetch("http://BD/index.php?login="+logins+"&&pass="+password)
+  let r = await fetch("http://BD/autorization.php?login="+logins+"&&pass="+password)
   a = (await r.text())
   if(a=="null") {
     notsuccess.style.display = "block"

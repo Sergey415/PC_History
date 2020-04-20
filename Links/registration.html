@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>Страница регистрации</title>
+</head>
+<body id="body">
+    <div id="form" class="text-center">
+        <div>
+        <input type="text" id="name" class="text-center" placeholder="Имя(Необязательно):">
+    </div>
+    <div>
+        <input type="text" id="family" class="text-center" placeholder="Фамилия(Необязательно):">
+    </div>
+        <div>
+          <input type="text" id="login" class="text-center" placeholder="Логин:">  
+        </div>
+        <div>
+            <input type="password" id="pass" class="text-center" placeholder="Пароль:"> 
+        </div>
+        <div>
+            <button id="but" onclick="reg()">Регистрация</button>
+        </div>
+    </div>
+</body>
+<script>
+    async function reg() {
+    let name = document.getElementById("name").value
+    let family = document.getElementById("family").value
+    let login = document.getElementById("login").value
+    let password = document.getElementById("pass").value
+    let r = await fetch("http://BD/registration.php?login="+login+"&&pass="+password)
+    a = (await r.text())
+  }
+</script>
+</html>
