@@ -34,11 +34,6 @@
     let password = document.getElementById("pass").value
     let r = await fetch("http://BD/registration.php?"+"name="+names+"&&family="+familys+"&&login="+login+"&&pass="+password)
     a = (await r.text())
-    if(a!=null) {
-        setTimeout(() => {
-            window.location.replace("../index.html")
-        }, 4000);
-    }
   }
 </script>
 </html>
