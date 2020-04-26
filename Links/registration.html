@@ -16,10 +16,10 @@
         <input type="text" id="family" class="text-center" placeholder="Фамилия(Необязательно):">
     </div>
         <div>
-          <input type="text" id="login" class="text-center" placeholder="Логин:">  
+          <input type="text" id="login" class="text-center" placeholder="Логин:">
         </div>
         <div>
-            <input type="password" id="pass" class="text-center" placeholder="Пароль:"> 
+            <input type="password" id="pass" class="text-center" placeholder="Пароль:">
         </div>
         <div>
             <button id="but" onclick="reg()">Регистрация</button>
@@ -28,12 +28,17 @@
 </body>
 <script>
     async function reg() {
-    let name = document.getElementById("name").value
-    let family = document.getElementById("family").value
+    let names = document.getElementById("name").value
+    let familys = document.getElementById("family").value
     let login = document.getElementById("login").value
     let password = document.getElementById("pass").value
-    let r = await fetch("http://BD/registration.php?login="+login+"&&pass="+password)
+    let r = await fetch("http://BD/registration.php?"+"name="+names+"&&family="+familys+"&&login="+login+"&&pass="+password)
     a = (await r.text())
+    if(a!=null) {
+        setTimeout(() => {
+            window.location.replace("../index.html")
+        }, 4000);
+    }
   }
 </script>
 </html>

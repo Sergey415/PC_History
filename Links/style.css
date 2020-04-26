@@ -19,7 +19,5 @@ input{
     border-radius: 15px;
     background-color: rgb(156, 156, 156);
     outline: none;
-    margin-left: auto;
-    margin-right: auto;
-    text-decoration: none;
+    margin-left: 105px;
 }

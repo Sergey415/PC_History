@@ -39,7 +39,7 @@
   <div id="forma">
     <input type="text" id="login" placeholder="Логин:" class="text-center">
     <input type="password" id="pass" placeholder="Пароль:" class="text-center"></input>
-    <button id="registr" class="btn btn-secondary" onclick="reg()"><a href = "Links/registration.html" target="blank" id="r">Регистрация</a></button>
+    <button id="registr" class="btn btn-secondary" onclick="reg()">Регистрация</button>
     <button id="autorization" class="btn btn-secondary" onclick="aut()">Вход</button>
   </div>
   <div id="block_user">
@@ -56,7 +56,7 @@
           <details>
             <summary>Компьютеры</summary>
             <h5><a href="#info1" class="page">Что такое ПК?</a></h5>
-            <h5><a href="#" class="page">История ПК</a></h5>
+            <h5><a href="#info2" class="page">История ПК</a></h5>
             <h5><a href="#" class="page">Развитие ПК</a></h5>
           </details>
         </h4>
@@ -67,7 +67,7 @@
         <div id="info1" class="text-center">
           <h3 class="text-center">Что такое ПК?</h3>
           <details>
-            <summary onclick="spoiler()">Устройство или система, способная выполнять заданную последовательность
+            <summary>Устройство или система, способная выполнять заданную последовательность
               операций.<br>
             </summary>
             <p>Это чаще всего операции численных расчётов и манипулирования данными.</p>
@@ -80,9 +80,23 @@
                 <button id="but1"disabled="disabled"><img src="images/button_submit.png" id="img1" ></button>
                 <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" id="but2"></button>
               </div>
+            </div>
+            <br>
+            <br>
+            
+        <div id="info2" class="text-center">
+          <h3 class="text-center">История ПК</h3>
+          <details>
+            <summary>Потребность считать возникала у людей вместе с появлением цивилизации.</summary>
+            <p>Для этого издревле были изобретены инструменты.</p>
+            <p>Счётные палочки и абака, в ходе развития науки эволюционировавшие <br> в вычислительные устройства - персональные компьютеры.</p>
+          </details>
+          <div style="display: flex; flex-wrap: wrap;">
+            <textarea name="comment" id="otz2" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+            <button id="but3"disabled="disabled"><img src="images/button_submit.png" id="img2" ></button>
+            <button id="lik2" disabled="disabled" onclick="like2()"><img src="images/likeheartwhite.png" alt="" id="but4"></button>
+          </div>
         </div>
-        <br>
-        <div id="info2">..</div>
         <div id="info3">,,</div>
         <div id="info4">]]</div>
         <div id="info5">[[</div>
@@ -119,7 +133,7 @@
     crossorigin="anonymous"></script>
 </body>
 <script>
-  var likes = 1
+  let likes = 1
 function like() {
     likes--
     if (likes % 2 == 0) {
@@ -129,11 +143,21 @@ function like() {
       but2.src = "images/likeheartwhite.png"
     }
   }
+  let likes2 = 1
+  function like2() {
+    likes2--
+    if (likes2 % 2 == 0) {
+      but4.src = "images/likeheartred.png"
+    }
+    if (likes2 % 2 != 0) {
+      but4.src = "images/likeheartwhite.png"
+    }
+  }
 </script>
 <script>
-  async function reg() {
-
-  }
+async function reg() {
+  window.location.replace("Links/registration.html")
+}
  async function aut() {
   let logins = document.getElementById("login").value
   let password = document.getElementById("pass").value
@@ -156,6 +180,9 @@ function like() {
     but1.removeAttribute("disabled")
     otz1.removeAttribute("disabled")
     lik.removeAttribute("disabled")
+    but3.removeAttribute("disabled")
+    otz2.removeAttribute("disabled")
+    lik2.removeAttribute("disabled")
   }
   }
   async function Exit() {
@@ -163,6 +190,9 @@ function like() {
     but1.setAttribute("disabled", "disabled")
     otz1.setAttribute("disabled", "disabled")
     lik.setAttribute("disabled", "disabled")
+    but3.setAttribute("disabled", "disabled")
+    otz2.setAttribute("disabled", "disabled")
+    lik2.setAttribute("disabled", "disabled")
     block_user.style.display = "none"
     forma.style.display = "flex"
   }
