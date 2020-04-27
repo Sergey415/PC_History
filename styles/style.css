@@ -267,7 +267,7 @@ summary{
         flex-direction: column-reverse;
     }
 }
-details[open] p,#komp_info1 {
+details[open] p,#komp_info1,#komp_info2 {
     animation: spoiler 2s;
   }
   @keyframes spoiler {
@@ -285,12 +285,12 @@ details[open] p,#komp_info1 {
         display: none;
     }
 }
-#komp_info1{
+#komp_info1, #komp_info2{
     width:300px;
     height: auto;
 }
 @media(max-width:320px) {
-    #komp_info1{
+    #komp_info1,#komp_info2{
         display:none
     }
 }
