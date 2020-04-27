@@ -359,5 +359,5 @@ details[open] p,#komp_info1 {
     100% {background-color: rgba(255,0,0,1)}
 }
 #but2:hover {
-    animation: like 2s infinite;
+    animation: like 2s;
 }
