@@ -226,14 +226,14 @@ summary{
     height: 30px;
     width: auto;
 }
-#otz1,#otz2 {
+.otzu {
     width: 600px;
     font-size: 20px;
 }
 
 
 @media(max-width:783px) {
-    #otz1,#otz2{
+    .otzu{
         width: 300px;
     }
 
@@ -250,14 +250,14 @@ summary{
   
 }
 @media(max-width:483px) {
-    #otz1,#otz2{
+    .otzu{
         width: 200px;
     }
     #info{
         margin-left: -5px;
     }
 }
-#but2,#but4{
+.but{
     width: 80px;
     height: 65px;
 }  

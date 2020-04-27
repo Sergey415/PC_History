@@ -77,9 +77,9 @@
             <p>Описание последовательности операций называется программой</p>
           </details>
                 <div style="display: flex; flex-wrap: wrap;">
-                <textarea name="comment" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+                <textarea name="comment" class="otzu" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
                 <button id="but1"disabled="disabled"><img src="images/button_submit.png" id="img1" ></button>
-                <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" id="but2"></button>
+                <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" class="but" id="but2"></button>
               </div>
             </div>
             <br>
@@ -94,9 +94,9 @@
             <img src="images/History_pc.jpg" id="komp_info2" alt="">
           </details>
           <div style="display: flex; flex-wrap: wrap;">
-            <textarea name="comment" id="otz2" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+            <textarea name="comment" class="otzu" id="otz2" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
             <button id="but3"disabled="disabled"><img src="images/button_submit.png" id="img2" ></button>
-            <button id="lik2" disabled="disabled" onclick="like2()"><img src="images/likeheartwhite.png" alt="" id="but4"></button>
+            <button id="lik2" disabled="disabled" onclick="like2()"><img src="images/likeheartwhite.png" alt="" class="but" id="but4"></button>
           </div>
         </div>
         <div id="info3">,,</div>
@@ -190,12 +190,18 @@ async function registr() {
     let passwords = document.getElementById("passwords").value
     let r = await fetch("http://BD/registration.php?"+"name="+names+"&&family="+familys+"&&login="+logins+"&&pass="+passwords)
     a = (await r.text())
-    if(a!=null)
-        Swal.fire({
+    if(a!=null) {
+            Swal.fire({
       title: "Успешно!",
       timer: 1500
 
     })
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Произошла ошибка!"
+      })
+    }
 }
  async function aut() {
   let logins = document.getElementById("login").value
@@ -217,23 +223,23 @@ async function registr() {
     success.style.display = "block"
     forma.style.display = "none"
     but1.removeAttribute("disabled")
-    otz1.removeAttribute("disabled")
     lik.removeAttribute("disabled")
     but3.removeAttribute("disabled")
-    otz2.removeAttribute("disabled")
+    otz1.removeAttribute("disabled")
     lik2.removeAttribute("disabled")
+    otz2.removeAttribute("disabled")
   }
   }
   async function Exit() {
     a = null
     but1.setAttribute("disabled", "disabled")
-    otz1.setAttribute("disabled", "disabled")
     lik.setAttribute("disabled", "disabled")
     but3.setAttribute("disabled", "disabled")
-    otz2.setAttribute("disabled", "disabled")
+    otz1.setAttribute("disabled", "disabled")
     lik2.setAttribute("disabled", "disabled")
     block_user.style.display = "none"
     forma.style.display = "flex"
+    otz2.setAttribute("disabled", "disabled")
   }
 </script>
 </html>
