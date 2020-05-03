@@ -78,7 +78,7 @@
           </details>
                 <div style="display: flex; flex-wrap: wrap;">
                 <textarea name="comment" class="otzu" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
-                <button id="but1"disabled="disabled"><img src="images/button_submit.png" id="img1" ></button>
+                <button id="but1"disabled="disabled" onclick="otzivi1()"><img src="images/button_submit.png" id="img1" ></button>
                 <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" class="but" id="but2"></button>
               </div>
             </div>
@@ -95,7 +95,7 @@
           </details>
           <div style="display: flex; flex-wrap: wrap;">
             <textarea name="comment" class="otzu" id="otz2" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
-            <button id="but3"disabled="disabled"><img src="images/button_submit.png" id="img2" ></button>
+            <button id="but3"disabled="disabled" onclick="otzivi()"><img src="images/button_submit.png" id="img2" ></button>
             <button id="lik2" disabled="disabled" onclick="like2()"><img src="images/likeheartwhite.png" alt="" class="but" id="but4"></button>
           </div>
         </div>
@@ -182,6 +182,11 @@ async function reg() {
           </div>`,
           showConfirmButton: false
   })
+}
+async function otzivi() {
+  let otziv = document.getElementById("otz2").value
+  let r = await fetch("http://BD/Otz.php?"+"otziv="+otziv)
+  a = (await r.text())
 }
 async function registr() {
     let names = document.getElementById("name").value
