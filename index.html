@@ -195,16 +195,22 @@ async function registr() {
     let passwords = document.getElementById("passwords").value
     let r = await fetch("http://BD/registration.php?"+"name="+names+"&&family="+familys+"&&login="+logins+"&&pass="+passwords)
     a = (await r.text())
-    if(a!="null") {
+    if(a!="") {
             Swal.fire({
       title: "Успешно!",
       timer: 1500
     })
+  
     } else {
       Swal.fire({
         icon: "error",
         title: "Произошла ошибка!"
       })
+        delete names
+    delete familys
+    delete logins
+    delete passwords
+    r = null
     }
 }
  async function aut() {
