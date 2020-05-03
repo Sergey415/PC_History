@@ -346,18 +346,3 @@ details[open] p,#komp_info1,#komp_info2 {
     font-size: 20px;
     border:3px solid rgb(136, 97, 52)
 }
-@keyframes like {
-    0% {background-color: rgba(255,0,0,0.1)}
-    10% {background-color: rgba(255,0,0,0.2)}
-    20% {background-color: rgba(255,0,0,0.3)}
-    30% {background-color: rgba(255,0,0,0.4)}
-    40% {background-color: rgba(255,0,0,0.5)}
-    50% {background-color: rgba(255,0,0,0.6)}
-    60% {background-color: rgba(255,0,0,0.7)}
-    70% {background-color: rgba(255,0,0,0.8)}
-    80% {background-color: rgba(255,0,0,0.9)}
-    100% {background-color: rgba(255,0,0,1)}
-}
-#but2:hover {
-    animation: like 2s;
-}
