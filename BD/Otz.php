@@ -6,6 +6,7 @@
     $mysqli = mysqli_connect("mysql-160578.srv.hoster.ru","srv160578_serega","Sery123","srv160578_serega");
     $mysqli->query("SET NAMES utf8");
     $otziv = $_GET["otziv"];
-    $sql = "INSERT INTO `Otz` (`id`, `id_user`, `Отзыв`, `was_like`) VALUES (NULL, '3', '$otziv', '1')";
+    $like = $_GET["was_like"];
+    $sql = "INSERT INTO `Otz` (`id`, `id_user`, `Отзыв`, `was_like`) VALUES (NULL, '3', '$otziv', '$like')";
     $mysqli->query($sql)
 ?>

@@ -78,7 +78,7 @@
           </details>
                 <div style="display: flex; flex-wrap: wrap;">
                 <textarea name="comment" class="otzu" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
-                <button id="but1"disabled="disabled"><img src="images/button_submit.png" id="img1" ></button>
+                <button id="but1"disabled="disabled" onclick="otzivi1()"><img src="images/button_submit.png" id="img1" ></button>
                 <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" class="but" id="but2"></button>
               </div>
             </div>
@@ -184,8 +184,25 @@ async function reg() {
   })
 }
 async function otzivi() {
-  let otziv = document.getElementById("otz2").value
-  let r = await fetch("http://BD/Otz.php?"+"otziv="+otziv+"&&id_user=3"+"&&was_like=1")
+  let otzi = document.getElementById("otz2").value
+  let l 
+  if(but4.src=="images/likeheartred.png") {
+    l = 1
+  } else {
+    l = 0
+  }
+  let r = await fetch("http://BD/Otz.php?"+"otziv="+otzi+"&&id_user=3"+"&&was_like="+l)
+  a = (await r.text())
+}
+async function otzivi1() {
+  let otzi = document.getElementById("otz1").value
+  let l 
+  if(but2.src=="images/likeheartred.png") {
+    l = 1
+  } else {
+    l = 0
+  }
+  let r = await fetch("http://BD/Otz.php?"+"otziv="+otzi+"&&id_user=3"+"&&was_like="+l)
   a = (await r.text())
 }
 async function registr() {
