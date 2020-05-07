@@ -184,8 +184,8 @@ async function reg() {
   })
 }
 async function otzivi() {
-  let otzi = document.getElementById("otz2").value
-  let r = await fetch("http://BD/Otz.php?"+"Отзыв="+otzi+"id_user=3"+"was_like=1")
+  let otziv = document.getElementById("otz2").value
+  let r = await fetch("http://BD/Otz.php?"+"otziv="+otziv+"&&id_user=3"+"&&was_like=1")
   a = (await r.text())
 }
 async function registr() {
