@@ -11,7 +11,8 @@
   <link rel="shortcut icon" href="images/icon.png" type="image/x-icon">
   <meta name="description" content="Развитие компьютеров и их аксессуаров">
   <meta name="author" content="Перекрестов Сергей">
-  <meta name="keywords" content="Компьютерная техника, ПК, История ПК, Первый компьютер, Мышь, Первая компьютерная мышь, для чего нужна ОС">
+  <meta name="keywords"
+    content="Компьютерная техника, ПК, История ПК, Первый компьютер, Мышь, Первая компьютерная мышь, для чего нужна ОС">
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -19,7 +20,7 @@
 <div id="warning">
   <h1 id="success" onclick="one(this)">Авторизация успешна!</h1>
   <h1 id="notsuccess" onclick="one(this)">Неправильный(е) логин и(или пароль!)</h1>
-  </div>
+</div>
 <header id="shapka">
   <div><img src="images/logo.png" alt="" id="logo"></div>
   <div class="s">
@@ -76,30 +77,56 @@
             <p>Однако сюда относятся и операции ввода-вывода.</p>
             <p>Описание последовательности операций называется программой</p>
           </details>
-                <div style="display: flex; flex-wrap: wrap;">
-                <textarea name="comment" class="otzu" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
-                <button id="but1"disabled="disabled" onclick="otzivi1()"><img src="images/button_submit.png" id="img1" ></button>
-                <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt="" class="but" id="but2"></button>
-              </div>
-            </div>
-            <br>
-            <br>
-            
+          <div style="display: flex; flex-wrap: wrap;">
+            <textarea name="comment" class="otzu" id="otz1" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+            <button id="but1" disabled="disabled" onclick="otzivi1()"><img src="images/button_submit.png"
+                id="img1"></button>
+            <button id="lik" disabled="disabled" onclick="like()"><img src="images/likeheartwhite.png" alt=""
+                class="but" id="but2"></button>
+          </div>
+        </div>
+        <br>
+        <br>
+
         <div id="info2" class="text-center">
           <h3 class="text-center">История ПК</h3>
           <details>
             <summary>Потребность считать возникала у людей вместе с появлением цивилизации.</summary>
             <p>Для этого издревле были изобретены инструменты.</p>
-            <p>Счётные палочки и абака, в ходе развития науки эволюционировавшие <br> в вычислительные устройства - персональные компьютеры.</p>
+            <p>Счётные палочки и абака, в ходе развития науки эволюционировавшие <br> в вычислительные устройства -
+              персональные компьютеры.</p>
             <img src="images/History_pc.jpg" id="komp_info2" alt="">
           </details>
           <div style="display: flex; flex-wrap: wrap;">
             <textarea name="comment" class="otzu" id="otz2" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
-            <button id="but3"disabled="disabled" onclick="otzivi()"><img src="images/button_submit.png" id="img2" ></button>
-            <button id="lik2" disabled="disabled" onclick="like2()"><img src="images/likeheartwhite.png" alt="" class="but" id="but4"></button>
+            <button id="but3" disabled="disabled" onclick="otzivi()"><img src="images/button_submit.png"
+                id="img2"></button>
+            <button id="lik2" disabled="disabled" onclick="like2()"><img src="images/likeheartwhite.png" alt=""
+                class="but" id="but4"></button>
           </div>
         </div>
-        <div id="info3">,,</div>
+        <br><br>
+        <div id="info3" class="text-center">
+          <h3 class="text-center">Развитие ПК</h3>
+          <details>
+            <summary>В короткой истории компьютерной техники выделяют несколько периодов.</summary>
+            <p>Временное деление на периоды в определенной степени условно.</p>
+            <p>Так как когда еще выпускались компьютеры старого поколения, <br> новое поколение начинало набирать обороты.</p>
+            <img src="images/komp1_info3.jpg" id="komp_info3" alt="">
+            <p>Можно выделить общие тенденции развития компьютеров:</p>
+            <p>1.Увеличение количества элементов на единицу площади.</p>
+            <p>2.Уменьшение размеров.</p>
+            <p>3.Увеличение скорости работы.</p>
+            <p>4.Снижение стоимости.</p>
+            <p>5.Развитие программных средств, с одной стороны, и упрощение,<br> стандартизация аппаратных – с другой.</p>
+            <img src="images/komp2_info3.jpg" id="komp2_info3" alt="">
+          </details>
+          <div style="display: flex; flex-wrap: wrap;">
+            <textarea name="comment" class="otzu" id="otz3" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+            <button id="but5" disabled="disabled" onclick="otzivi3()"><img src="images/button_submit.png" id="img3"></button>
+            <button id="lik3" disabled="disabled" onclick="like3()"><img src="images/likeheartwhite.png" alt="" class="but" id="but6"></button>
+          </div>
+        </div>
         <div id="info4">]]</div>
         <div id="info5">[[</div>
         <div id="info6">==</div>
@@ -136,7 +163,7 @@
 </body>
 <script>
   let likes = 1
-function like() {
+  function like() {
     likes--
     if (likes % 2 == 0) {
       but2.src = "images/likeheartred.png"
@@ -155,15 +182,25 @@ function like() {
       but4.src = "images/likeheartwhite.png"
     }
   }
- function one(p) {
-  p.style.display = "none"
- }
+  let likes3 = 1
+  function like3() {
+    likes3--
+    if (likes3 % 2 == 0) {
+      but6.src = "images/likeheartred.png"
+    }
+    if (likes3 % 2 != 0) {
+      but6.src = "images/likeheartwhite.png"
+    }
+  }
+  function one(p) {
+    p.style.display = "none"
+  }
 </script>
 <script>
-async function reg() {
-  Swal.fire({
-    title: "Регистрация",
-    html: `<div id='form' class='text-center'>
+  async function reg() {
+    Swal.fire({
+      title: "Регистрация",
+      html: `<div id='form' class='text-center'>
       <div>
         <input type='text' id='name' class='text-center' placeholder='Имя(Необязательно):'>
     </div>
@@ -180,82 +217,92 @@ async function reg() {
             <button onclick='registr()' class='btn btn-secondary'>Регистрация</button>
         </div>
           </div>`,
-          showConfirmButton: false
-  })
-}
-async function otzivi() {
-  let otzi = document.getElementById("otz2").value
-  let l 
-  if(but4.src=="images/likeheartred.png") {
-    l = 1
-  } else {
-    l = 0
+      showConfirmButton: false
+    })
   }
-  let r = await fetch("http://BD/Otz.php?"+"otziv="+otzi+"&&id_user=3"+"&&was_like="+l)
-  a = (await r.text())
-}
-async function otzivi1() {
-  let otzi = document.getElementById("otz1").value
-  let l 
-  if(but2.src=="images/likeheartred.png") {
-    l = 1
-  } else {
-    l = 0
+  async function otzivi() {
+    let otzi = document.getElementById("otz2").value
+    let l
+    if (but4.src == "images/likeheartred.png") {
+      l = 1
+    } else {
+      l = 0
+    }
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&id_user=3" + "&&was_like=" + l)
+    a = (await r.text())
   }
-  let r = await fetch("http://BD/Otz.php?"+"otziv="+otzi+"&&id_user=3"+"&&was_like="+l)
-  a = (await r.text())
-}
-async function registr() {
+  async function otzivi1() {
+    let otzi = document.getElementById("otz1").value
+    let l
+    if (but2.src == "images/likeheartred.png") {
+      l = 1
+    } else {
+      l = 0
+    }
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&id_user=3" + "&&was_like=" + l)
+    a = (await r.text())
+  }
+  async function otzivi3() {
+    let otzi = document.getElementById("otz3").value
+    let l
+    if (but6.src == "images/likeheartred.png") {
+      l = 1
+    } else {
+      l = 0
+    }
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&id_user=3" + "&&was_like=" + l)
+    a = (await r.text())
+  }
+  async function registr() {
     let names = document.getElementById("name").value
     let familys = document.getElementById("family").value
     let logins = document.getElementById("logins").value
     let passwords = document.getElementById("passwords").value
-    let r = await fetch("http://BD/registration.php?"+"name="+names+"&&family="+familys+"&&login="+logins+"&&pass="+passwords)
+    let r = await fetch("http://BD/registration.php?" + "name=" + names + "&&family=" + familys + "&&login=" + logins + "&&pass=" + passwords)
     a = (await r.text())
-    if(a!="") {
-            Swal.fire({
-      title: "Успешно!",
-      timer: 1500
-    })
-  
+    if (logins != "" && passwords != "") {
+      Swal.fire({
+        title: "Успешно!",
+        timer: 1500
+      })
     } else {
       Swal.fire({
         icon: "error",
         title: "Произошла ошибка!"
       })
-        delete names
-    delete familys
-    delete logins
-    delete passwords
-    r = null
+      delete r
+      delete a
     }
-}
- async function aut() {
-  let logins = document.getElementById("login").value
-  let password = document.getElementById("pass").value
-  let r = await fetch("http://BD/autorization.php?login="+logins+"&&pass="+password)
-  a = (await r.text())
-  if(a=="null") {
-    notsuccess.style.display = "block"
-     setTimeout(() => {
-      notsuccess.style.display = "none"
-  }, 3000);
-  } else {
-        setTimeout(() => {
-      success.style.display = "none"
-  }, 3000);
-    block_user.style.display = "flex"
-    block_user.style.flexDirection = "column"
-    block_user.style.flexWrap = "wrap"
-    success.style.display = "block"
-    forma.style.display = "none"
-    but1.removeAttribute("disabled")
-    lik.removeAttribute("disabled")
-    but3.removeAttribute("disabled")
-    otz1.removeAttribute("disabled")
-    lik2.removeAttribute("disabled")
-    otz2.removeAttribute("disabled")
   }
+  async function aut() {
+    let logins = document.getElementById("login").value
+    let password = document.getElementById("pass").value
+    let r = await fetch("http://BD/autorization.php?login=" + logins + "&&pass=" + password)
+    a = (await r.text())
+    if (a == "null") {
+      notsuccess.style.display = "block"
+      setTimeout(() => {
+        notsuccess.style.display = "none"
+      }, 3000);
+    } else {
+      setTimeout(() => {
+        success.style.display = "none"
+      }, 3000);
+      block_user.style.display = "flex"
+      block_user.style.flexDirection = "column"
+      block_user.style.flexWrap = "wrap"
+      success.style.display = "block"
+      forma.style.display = "none"
+      but1.removeAttribute("disabled")
+      lik.removeAttribute("disabled")
+      but3.removeAttribute("disabled")
+      otz1.removeAttribute("disabled")
+      lik2.removeAttribute("disabled")
+      otz2.removeAttribute("disabled")
+      lik3.removeAttribute("disabled")
+      otz3.removeAttribute("disabled")
+      but5.removeAttribute("disabled")
+    }
   }
   async function Exit() {
     a = null
@@ -267,6 +314,10 @@ async function registr() {
     block_user.style.display = "none"
     forma.style.display = "flex"
     otz2.setAttribute("disabled", "disabled")
+    but5.setAttribute("disabled", "disabled")
+    otz3.setAttribute("disabled", "disabled")
+    lik3.setAttribute("disabled", "disabled")
   }
 </script>
+
 </html>
