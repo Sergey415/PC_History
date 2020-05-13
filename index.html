@@ -264,6 +264,7 @@
     a = (await r.text())
     if (logins != "" && passwords != "") {
       Swal.fire({
+        icon: "success",
         title: "Успешно!",
         timer: 1500
       })
@@ -276,11 +277,33 @@
       delete a
     }
   }
+  async function proverka() {
+      let r = await fetch("http://BD/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
+  a = (await r.text())
+  if (a != "null") {
+      block_user.style.display = "flex"
+      block_user.style.flexDirection = "column"
+      block_user.style.flexWrap = "wrap"
+      forma.style.display = "none"
+      but1.removeAttribute("disabled")
+      lik.removeAttribute("disabled")
+      but3.removeAttribute("disabled")
+      otz1.removeAttribute("disabled")
+      lik2.removeAttribute("disabled")
+      otz2.removeAttribute("disabled")
+      lik3.removeAttribute("disabled")
+      otz3.removeAttribute("disabled")
+      but5.removeAttribute("disabled")
+    }
+  }
+proverka()
   async function aut() {
-    let logins = document.getElementById("login").value
-    let password = document.getElementById("pass").value
-    let r = await fetch("http://BD/autorization.php?login=" + logins + "&&pass=" + password)
+    const logins = document.getElementById("login").value
+    const password = document.getElementById("pass").value
+    let r = await fetch("http://BD/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
     a = (await r.text())
+    localStorage.setItem("login", logins)
+    localStorage.setItem("pass", password)
     if (a == "null") {
       notsuccess.style.display = "block"
       setTimeout(() => {
@@ -307,6 +330,8 @@
     }
   }
   async function Exit() {
+    localStorage.removeItem("login")
+    localStorage.removeItem("pass")
     a = null
     but1.setAttribute("disabled", "disabled")
     lik.setAttribute("disabled", "disabled")
