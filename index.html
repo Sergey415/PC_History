@@ -283,7 +283,7 @@ proverka()
   async function aut() {
     const logins = document.getElementById("login").value
     const password = document.getElementById("pass").value
-    let r = await fetch("http://BD/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/autorization.php?login=" + logins + "&&pass=" + password)
     a = (await r.text())
     localStorage.setItem("login", logins)
     localStorage.setItem("pass", password)
