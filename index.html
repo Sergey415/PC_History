@@ -17,10 +17,13 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head>
+<!--Всплывающее окно об успешной(неуспешной) авторизации-->
 <div id="warning">
   <h1 id="success" onclick="one(this)">Авторизация успешна!</h1>
   <h1 id="notsuccess" onclick="one(this)">Неправильный(е) логин и(или пароль!)</h1>
 </div>
+<!--Всплывающее окно об успешной(неуспешной) авторизации конец-->
+<!--Шапка-->
 <header id="shapka">
   <div><img src="images/logo.png" alt="" id="logo"></div>
   <div class="s">
@@ -49,9 +52,11 @@
     <button class="btn btn-secondary" id="bexit" onclick="Exit()">Выход</button>
   </div>
 </header>
+<!--Шапка конец-->
 
 <body id="body">
   <main id="many">
+    <!--Боковое навигационное меню-->
     <div id="pages">
       <aside id="aside">
         <h4>
@@ -64,7 +69,9 @@
         </h4>
       </aside>
     </div>
+    <!--Боковое навигационное меню конец-->
     <div id="content">
+      <!--Контент-->
       <div id="info">
         <div id="info1" class="text-center">
           <h3 class="text-center">Что такое ПК?</h3>
@@ -97,7 +104,7 @@
               персональные компьютеры.</p>
             <img src="images/History_pc.jpg" id="komp_info2" alt="">
           </details>
-           <br>
+          <br>
           <div style="display: flex; flex-wrap: wrap;">
             <textarea name="comment" class="otzu" id="otz2" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
             <button id="but3" disabled="disabled" onclick="otzivi()"><img src="images/button_submit.png"
@@ -112,21 +119,25 @@
           <details>
             <summary>В короткой истории компьютерной техники выделяют несколько периодов.</summary>
             <p>Временное деление на периоды в определенной степени условно.</p>
-            <p>Так как когда еще выпускались компьютеры старого поколения, <br> новое поколение начинало набирать обороты.</p>
+            <p>Так как когда еще выпускались компьютеры старого поколения, <br> новое поколение начинало набирать
+              обороты.</p>
             <img src="images/komp1_info3.jpg" id="komp_info3" alt="">
             <p>Можно выделить общие тенденции развития компьютеров:</p>
             <p>1.Увеличение количества элементов на единицу площади.</p>
             <p>2.Уменьшение размеров.</p>
             <p>3.Увеличение скорости работы.</p>
             <p>4.Снижение стоимости.</p>
-            <p>5.Развитие программных средств, с одной стороны, и упрощение,<br> стандартизация аппаратных – с другой.</p>
+            <p>5.Развитие программных средств, с одной стороны, и упрощение,<br> стандартизация аппаратных – с другой.
+            </p>
             <img src="images/komp2_info3.jpg" id="komp2_info3" alt="">
           </details>
-            <br>
+          <br>
           <div style="display: flex; flex-wrap: wrap;">
             <textarea name="comment" class="otzu" id="otz3" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
-            <button id="but5" disabled="disabled" onclick="otzivi3()"><img src="images/button_submit.png" id="img3"></button>
-            <button id="lik3" disabled="disabled" onclick="like3()"><img src="images/likeheartwhite.png" alt="" class="but" id="but6"></button>
+            <button id="but5" disabled="disabled" onclick="otzivi3()"><img src="images/button_submit.png"
+                id="img3"></button>
+            <button id="lik3" disabled="disabled" onclick="like3()"><img src="images/likeheartwhite.png" alt=""
+                class="but" id="but6"></button>
           </div>
         </div>
         <div id="info4">]]</div>
@@ -137,8 +148,9 @@
       </div>
     </div>
   </main>
-
+  <!--Контент конец-->
   <footer>
+    <!--Подвал-->
     <div id="down">
       <div id="cont1">©Все права защищены</div>
       <div id="cont2">Автор: Перекрёстов Сергей</div>
@@ -150,6 +162,7 @@
       </div>
       <div id="cont4">Июнь 2020 г.</div>
     </div>
+    <!--Подвал конец-->
   </footer>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -164,6 +177,7 @@
     crossorigin="anonymous"></script>
 </body>
 <script>
+  //Функции лайков
   let likes = 1
   function like() {
     likes--
@@ -194,11 +208,13 @@
       but6.src = "images/likeheartwhite.png"
     }
   }
+  //Функции лайков конец
   function one(p) {
     p.style.display = "none"
   }
 </script>
 <script>
+  //Окно регистрации
   async function reg() {
     Swal.fire({
       title: "Регистрация",
@@ -222,6 +238,9 @@
       showConfirmButton: false
     })
   }
+  //Окно регистрации конец
+
+  //Функции отзывов
   async function otzivi() {
     let otzi = document.getElementById("otz2").value
     let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
@@ -234,9 +253,12 @@
   }
   async function otzivi3() {
     let otzi = document.getElementById("otz3").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi  + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
+  //Функции отзывов
+
+  //Функция регистрации
   async function registr() {
     let names = document.getElementById("name").value
     let familys = document.getElementById("family").value
@@ -259,10 +281,13 @@
       delete a
     }
   }
+  //Функция регистрации конец
+
+  //Функция проверки авторизованности пользователя
   async function proverka() {
-      let r = await fetch("http://BD/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
-  a = (await r.text())
-  if (a != "null") {
+    let r = await fetch("http://BD/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
+    a = (await r.text())
+    if (a != "null") {
       block_user.style.display = "flex"
       block_user.style.flexDirection = "column"
       block_user.style.flexWrap = "wrap"
@@ -278,8 +303,10 @@
       but5.removeAttribute("disabled")
     }
   }
-  
-proverka()
+  proverka()
+  //Функция проверки авторизованности пользователя конец
+
+  //Функция авторизации 
   async function aut() {
     const logins = document.getElementById("login").value
     const password = document.getElementById("pass").value
@@ -312,6 +339,9 @@ proverka()
       but5.removeAttribute("disabled")
     }
   }
+  //Функция авторизации конец
+
+  //Функция выхода
   async function Exit() {
     localStorage.removeItem("login")
     localStorage.removeItem("pass")
@@ -328,6 +358,7 @@ proverka()
     otz3.setAttribute("disabled", "disabled")
     lik3.setAttribute("disabled", "disabled")
   }
+  //Функция выхода конец
 </script>
 
 </html>
