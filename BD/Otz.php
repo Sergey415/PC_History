@@ -7,6 +7,14 @@
     $mysqli->query("SET NAMES utf8");
     $otziv = $_GET["otziv"];
     $like = $_GET["was_like"];
-    $sql = "INSERT INTO `Otz` (`id`, `id_user`, `Отзыв`, `was_like`) VALUES (NULL, '3', '$otziv', '$like')";
-    $mysqli->query($sql)
+    $login = $_GET["login"];
+    $pass = $_GET["password"];
+    $id = "SELECT id FROM Logins WHERE login = '$login' AND password = '$pass'";
+    $sql = "INSERT INTO `Otz` (`id`, `id_user`, `Отзыв`, `was_like`) VALUES (NULL, '$id', '$otziv', '$like')";
+    $mysqli->query($sql);
+    $result = $mysqli->query($id);
+    for($i=0;$row = mysqli_fetch_assoc($result);$i++){
+    $test[] = $row;
+    };
+    print json_encode($test, JSON_UNESCAPED_UNICODE);
 ?>

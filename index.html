@@ -224,35 +224,17 @@
   }
   async function otzivi() {
     let otzi = document.getElementById("otz2").value
-    let l
-    if (but4.src == "images/likeheartred.png") {
-      l = 1
-    } else {
-      l = 0
-    }
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&id_user=3" + "&&was_like=" + l)
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
   async function otzivi1() {
     let otzi = document.getElementById("otz1").value
-    let l
-    if (but2.src == "images/likeheartred.png") {
-      l = 1
-    } else {
-      l = 0
-    }
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&id_user=3" + "&&was_like=" + l)
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
   async function otzivi3() {
     let otzi = document.getElementById("otz3").value
-    let l
-    if (but6.src == "images/likeheartred.png") {
-      l = 1
-    } else {
-      l = 0
-    }
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&id_user=3" + "&&was_like=" + l)
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi  + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
   async function registr() {
