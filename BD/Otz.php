@@ -10,6 +10,11 @@
     $login = $_GET["login"];
     $pass = $_GET["password"];
     $id = "SELECT id FROM Logins WHERE login = '$login' AND password = '$pass'";
+   $result = $mysqli->query($id);
+        for($i=0;$row = mysqli_fetch_assoc($result);$i++){
+        $test[] = $row;
+        };
     $sql = "INSERT INTO `Otz` (`id`, `id_user`, `Отзыв`, `was_like`) VALUES (NULL, '$id', '$otziv', '$like')";
-    $mysqli->query($sql)
+    $mysqli->query($sql);
+    
 ?>
