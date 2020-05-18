@@ -242,18 +242,18 @@
 
   //Функции отзывов
   async function otzivi() {
-    let otzi = document.getElementById("otz2").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let otzi2 = document.getElementById("otz2").value
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi2 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
   async function otzivi1() {
-    let otzi = document.getElementById("otz1").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let otzi1 = document.getElementById("otz1").value
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi1 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
   async function otzivi3() {
-    let otzi = document.getElementById("otz3").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let otzi3 = document.getElementById("otz3").value
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi3 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
   }
   //Функции отзывов
