@@ -13,6 +13,7 @@
     for($i=0;$row = mysqli_fetch_assoc($result);$i++){
     $test[] = $row;
     };
+    $id = $test[0]['id'];
     $sql = "INSERT INTO `Otz` (`id`, `id_user`, `Отзыв`, `was_like`) VALUES (NULL, '$id', '$otziv', '1')";
     $mysqli->query($sql);
 ?>
