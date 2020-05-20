@@ -178,24 +178,32 @@
 </body>
 <script>
   //Функции лайков
+  var l1 = 0 
+  var l2 = 0 
+  var l3 = 0
   let likes = 1
   function like() {
     likes--
     if (likes % 2 == 0) {
       but2.src = "images/likeheartred.png"
+      l1 = 1
     }
     if (likes % 2 != 0) {
       but2.src = "images/likeheartwhite.png"
+      l1 = 0
     }
+
   }
   let likes2 = 1
   function like2() {
     likes2--
     if (likes2 % 2 == 0) {
       but4.src = "images/likeheartred.png"
+      l2 = 1
     }
     if (likes2 % 2 != 0) {
       but4.src = "images/likeheartwhite.png"
+      l2 = 0
     }
   }
   let likes3 = 1
@@ -203,9 +211,11 @@
     likes3--
     if (likes3 % 2 == 0) {
       but6.src = "images/likeheartred.png"
+      l3 = 1
     }
     if (likes3 % 2 != 0) {
       but6.src = "images/likeheartwhite.png"
+      l3 = 0
     }
   }
   //Функции лайков конец
@@ -243,20 +253,20 @@
   //Функции отзывов
   async function otzivi() {
     let otzi2 = document.getElementById("otz2").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi2 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi2 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass") + "&&lik=" + l2)
     a = (await r.text())
   }
   async function otzivi1() {
     let otzi1 = document.getElementById("otz1").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi1 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi1 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass") + "&&lik=" + l1)
     a = (await r.text())
   }
   async function otzivi3() {
     let otzi3 = document.getElementById("otz3").value
-    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi3 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi3 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass") + "&&lik=" + l3)
     a = (await r.text())
   }
-  //Функции отзывов
+  //Функции отзывов конец
 
   //Функция регистрации
   async function registr() {

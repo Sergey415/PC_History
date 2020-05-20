@@ -9,13 +9,20 @@
 </head>
 <style>
     canvas {
-        border: 1px solid black
+        border: 1px solid black;
+    }
+    #body{
+        text-align: center;
+        zoom: 70%;
+        background-image: url("fon.jpg");
     }
 </style>
 
-<body>
-    <audio src="Snake.mp3" autoplay="autoplay"></audio>
+<body id="body">
+    <h1><audio src="Snake.mp3" autoplay="autoplay" controls="controls" loop="loop" id="vol"></audio></h1>
+    
     <canvas width="800px" height="800px" id="canvas"></canvas>
+    <script>vol.volume = 0.005</script>
     <script>
         ctx = canvas.getContext('2d')
         const w = canvas.clientWidth

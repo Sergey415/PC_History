@@ -1,10 +1,10 @@
 body {
-    background-image: url(https://i.gifer.com/XzZg.gif);
+    background-image: url("fon.jpg");
 }
 #r {
     border-radius: 20px;
-    background-color: rgba(212, 116, 74, 0.4);
-    color: white;
+    background-color: rgba(212, 116, 74, 0.6);
+    color: black;
 }
 #rt {
     background: #D8FFB3;
