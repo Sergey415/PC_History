@@ -16,12 +16,15 @@
         zoom: 70%;
         background-image: url("fon.jpg");
     }
+    h2{
+        background-color: rgba(255,255,255,0.3);
+    }
 </style>
 
 <body id="body">
     <h1><audio src="Snake.mp3" autoplay="autoplay" controls="controls" loop="loop" id="vol"></audio></h1>
-    
-    <canvas width="800px" height="800px" id="canvas"></canvas>
+    <h2>Счёт:<span id="shet"></span></h2>
+    <canvas width="700px" height="700px" id="canvas"></canvas>
     <script>vol.volume = 0.005</script>
     <script>
         ctx = canvas.getContext('2d')
@@ -29,6 +32,7 @@
         const h = canvas.clientHeight
         const size = 20
         const count_food = 5
+        var chet = 0
         const char = {
             move: 'right',
             x: [],
@@ -115,9 +119,11 @@
             }
             for (i = 0; i < count_food; i++) {
                 if (char.x[0] == food[i].x && char.y[0] == food[i].y) {
+                    chet += 1
+                    shet.textContent = chet 
                     food[i].change()
                     char.x.push(char.x[0])
-                    char.y.push(char.y[0])
+                    char.y.push(char.y[0])  
                 }
             }
             ctx.fillStyle = "rgb(0,230,0)"
