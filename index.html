@@ -65,6 +65,7 @@
             <h5><a href="#info1" class="page">Что такое ПК?</a></h5>
             <h5><a href="#info2" class="page">История ПК</a></h5>
             <h5><a href="#info3" class="page">Развитие ПК</a></h5>
+            <h5><a href="#info4" class="page">Носители <br> информации</a></h5>
           </details>
         </h4>
       </aside>
@@ -140,7 +141,39 @@
                 class="but" id="but6"></button>
           </div>
         </div>
-        <div id="info4">]]</div>
+        <br><br>
+        <div id="info4"> <h3 class="text-center">Развитие носителей информации</h3>
+          <details>
+            <summary>Давайте же сначала разберёмся, что такое носитель информации</summary>
+
+            <p>Носитель информации - это любое устройство предназначенное <br> для записи и хранения информации.</p>
+            <p>Примерами носителей могут быть и бумага, или USB-Flash <br> память, также как и глиняная табличка или человеческая ДНК.</p>
+            <p>Первыми носителями информации были, по всей видимости, стены пещер.</p>
+            <img src="images/information_evolution.jpg" alt="" id="information_evolution1">
+            <p>Глиняные таблички - 7-й век до нашей эры</p>
+            <p>На глиняных табличках писали пока глина была сырой, а затем обжигали в печи.</p>
+            <img src="images/information_evolution2.jpg" alt="" id="information_evolution2">
+            <p>Потом были восковые таблички, папирус, пергамент, бумага, береста.</p>
+            <p>И наконец в 1804 году благодаря Герману Холлериту <br> появляется носитель информации отдалённо похожий на нынешние</p>
+            <p>Это была - первая перфокарта</p>
+            <img src="images/information_evolution_perfokarta.jpg" alt="" id="information_evolution_perfokarta">
+            <p>И после этого, как говориться, пошло-поехало</p>
+            <p>Перфоленты - 1846 год</p>
+            <p>Магнитные ленты, затем магнитные диски - 50-е</p>
+            <p>Гибкий диск (дискета) - 1969 год</p>
+            <p>И наконец, история развития подходит к концу</p>
+            <p>Жёсткий диск - Жесткий диск изобретен в 1956 году, но продолжает <br> использоваться и постоянно совершенствоваться.</p>
+            <img src="images/information_evolution_hard_disk.jpg" alt="" id="information_evolution_hard_disk">
+            <p>Далее идёт compact-disk, последним звеном является flash память</p>
+          </details>
+          <br>
+          <div style="display: flex; flex-wrap: wrap;">
+            <textarea name="comment" class="otzu" id="otz4" placeholder="Ваш отзыв:" disabled="disabled"></textarea>
+            <button id="but7" disabled="disabled" onclick="otzivi4()"><img src="images/button_submit.png"
+                id="img4"></button>
+            <button id="lik4" disabled="disabled" onclick="like4()"><img src="images/likeheartwhite.png" alt=""
+                class="but" id="but8"></button>
+          </div></div>
         <div id="info5">[[</div>
         <div id="info6">==</div>
         <div id="info7">++</div>
@@ -181,6 +214,7 @@
   var l1 = 0 
   var l2 = 0 
   var l3 = 0
+  var l4 = 0
   let likes = 1
   function like() {
     likes--
@@ -216,6 +250,18 @@
     if (likes3 % 2 != 0) {
       but6.src = "images/likeheartwhite.png"
       l3 = 0
+    }
+  }
+  let likes4 = 1 
+  function like4() {
+    likes4--
+    if(likes4 % 2 == 0){
+      but8.src = "images/likeheartred.png"
+      l4 = 1
+    }
+    if(likes4 % 2 != 0) {
+      but8.src = "images/likeheartwhite.png"
+      l4 = 0
     }
   }
   //Функции лайков конец
@@ -266,6 +312,11 @@
     let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi3 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass") + "&&lik=" + l3)
     a = (await r.text())
   }
+  async function otzivi4() {
+    let otzi4 = document.getElementById("otz4").value
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi4 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass") + "&&lik=" + l4)
+    a = (await r.text())
+  }
   //Функции отзывов конец
 
   //Функция регистрации
@@ -311,6 +362,9 @@
       lik3.removeAttribute("disabled")
       otz3.removeAttribute("disabled")
       but5.removeAttribute("disabled")
+      lik4.removeAttribute("disabled")
+      but7.removeAttribute("disabled")
+      otz4.removeAttribute("disabled")
     }
   }
   proverka()
@@ -347,6 +401,9 @@
       lik3.removeAttribute("disabled")
       otz3.removeAttribute("disabled")
       but5.removeAttribute("disabled")
+      but7.removeAttribute("disabled")
+      otz4.removeAttribute("disabled")
+      lik4.removeAttribute("disabled")
     }
   }
   //Функция авторизации конец
@@ -367,6 +424,9 @@
     but5.setAttribute("disabled", "disabled")
     otz3.setAttribute("disabled", "disabled")
     lik3.setAttribute("disabled", "disabled")
+    lik4.setAttribute("disabled", "disabled")
+    otz4.setAttribute("disabled", "disabled")
+    but7.setAttribute("disabled", "disabled")
   }
   //Функция выхода конец
 </script>
