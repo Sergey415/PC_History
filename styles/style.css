@@ -24,6 +24,7 @@ html,body{
 #body{
     background-image: url(back.jpg);
     background-size: cover;
+    background-repeat: no-repeat;
 }
 .s{
     display: flex;
@@ -120,17 +121,17 @@ html,body{
     margin-left: 20px;
 }
 #pages {
-    color: white;
+    color: black;
     font-family: 'Playfair Display', serif;
-    width: auto;
-    background-color: rgba(0,0,0,0.3);
+    position: fixed;
+    height: 400px;
 }
 .page{
-    color: white;
-    transition: 0.5s
+    color: black;
+    transition: 0.5s;
 }
 .page:hover {
-    color: rgba(250, 135, 90, 0.9);
+    color: brown;
     text-decoration: none;
 }
 #info{
@@ -140,8 +141,8 @@ html,body{
     margin-top: 20px;
     font-family: 'Playfair Display', serif;
     border-radius: 15px;
-    margin-left: 80px;
-    background-color: rgba(255,255,255,0.5);
+    background-color: rgba(255,255,255,0.3);
+    margin-left: 250px;
 }
 summary{
     outline: none;
