@@ -24,7 +24,6 @@ html,body{
 #body{
     background-image: url(back.jpg);
     background-size: cover;
-    background-repeat: no-repeat;
 }
 .s{
     display: flex;
@@ -124,7 +123,6 @@ html,body{
     color: black;
     font-family: 'Playfair Display', serif;
     position: fixed;
-    height: 400px;
 }
 .page{
     color: black;
@@ -256,6 +254,9 @@ summary{
 @media(max-width:1125px) {
     #shapka{
         flex-direction: column-reverse;
+    }
+    #pages{
+        position: static;
     }
 }
 details[open] p,#komp_info1,#komp_info2,#komp_info3,#komp2_info3,#information_evolution1,#information_evolution2,#information_evolution_perfokarta,#information_evolution_hard_disk{
