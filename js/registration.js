@@ -1,10 +1,11 @@
 async function registr() {
+  // Создаём переменные и заносим в них значения имени, фамилии, логина и пароля введённых пользователем
     let names = document.getElementById("name").value
     let familys = document.getElementById("family").value
     let logins = document.getElementById("logins").value
     let passwords = document.getElementById("passwords").value
     let r = await fetch("http://BD/registration.php?" + "name=" + names + "&&family=" + familys + "&&login=" + logins + "&&pass=" + passwords)
-    a = (await r.text())
+    // Проверяем
     if (logins != "" && passwords != "") {
       Swal.fire({
         icon: "success",
@@ -19,7 +20,7 @@ async function registr() {
         icon: "error",
         title: "Произошла ошибка!"
       })
-      delete r
-      delete a
-    }
+       }
+    // Отправляем их в БД
+    a = (await r.text())
   }

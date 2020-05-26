@@ -1,3 +1,4 @@
+//Всплывающее окно регистрации
 async function reg() {
     Swal.fire({
       title: "Регистрация",

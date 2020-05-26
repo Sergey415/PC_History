@@ -41,6 +41,8 @@ html,body{
 #many{
     display: flex;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-self: center;
 }
 #down{
     display: flex;
@@ -126,10 +128,15 @@ html,body{
 }
 .page{
     color: black;
-    transition: 0.5s;
+    transition: 0.5s
+}
+#pages>#aside>h4>details>h5{
+    display: flex;
+    justify-content: space-between;
+    height: 50px;
 }
 .page:hover {
-    color: brown;
+    color: rgb(255, 38, 0);
     text-decoration: none;
 }
 #info{
@@ -140,7 +147,7 @@ html,body{
     font-family: 'Playfair Display', serif;
     border-radius: 15px;
     background-color: rgba(255,255,255,0.3);
-    margin-left: 250px;
+    margin-left: 180px;
 }
 summary{
     outline: none;
@@ -233,8 +240,8 @@ summary{
 }
 @media(max-width:840px) {
     #many{
-        display: flex;
         flex-direction: column;
+        align-self: center;
     }
   
 }
