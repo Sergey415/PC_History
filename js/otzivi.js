@@ -14,6 +14,10 @@ async function otzivi() {
       title: "Ваш отзыв был успешно отправлен:)",
       timer: 2000
     })
+  localStorage.setItem("otz", otzi2 /*Переменная, в которой хранится значение отзыва*/)
+  users_otziv = document.createElement("h3") //Создаём элемент
+  users_otziv.textContent = localStorage.getItem("otz") //Меняем текст на отзыв
+  users_otziv.insertBefore("otz2") // Вставляем его после поля ввода отзыва
   }
   // Остальные функции работают также
   async function otzivi1() {

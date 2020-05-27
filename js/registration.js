@@ -4,7 +4,7 @@ async function registr() {
     let familys = document.getElementById("family").value
     let logins = document.getElementById("logins").value
     let passwords = document.getElementById("passwords").value
-    let r = await fetch("http://BD/registration.php?" + "name=" + names + "&&family=" + familys + "&&login=" + logins + "&&pass=" + passwords)
+    
     // Проверяем
     if (logins != "" && passwords != "") {
       Swal.fire({
@@ -15,12 +15,15 @@ async function registr() {
       localStorage.setItem('login', logins)
       localStorage.setItem('pass', passwords)
       proverka()
+      // Отправляем их в БД
+      let r = await fetch("http://BD/registration.php?" + "name=" + names + "&&family=" + familys + "&&login=" + logins + "&&pass=" + passwords)
+      a = (await r.text())
     } else {
+      // если поля логина и(или) пароля пустые, то выводим сообщение об ошибке
       Swal.fire({
         icon: "error",
-        title: "Произошла ошибка!"
+        title: "Произошла ошибка!",
+        text: "Возможно это связано с тем, что поля ввода логина и (или) пароля остались пустыми"
       })
        }
-    // Отправляем их в БД
-    a = (await r.text())
   }

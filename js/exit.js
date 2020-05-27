@@ -1,4 +1,7 @@
 async function Exit() {
+  //Очищаем поля ввода логина и пароля
+  document.getElementById("login").value = ""
+  document.getElementById("pass").value = ""
   // Сообщение выводится сразу после выхода, как бы предупреждая пользователя
     Swal.fire({
       title:"Внимание, чтобы кнопки стали вновь кликабельны, необходима аворизация!",
