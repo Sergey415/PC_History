@@ -92,7 +92,9 @@ html,body{
     height: 160px;
     width: auto;
 }
-
+#info1,#info2,#info3,#info4{
+    box-shadow: -10px 10px rgba(0, 0, 0, 0.253);
+}
 #autorization{
     border-radius: 0px 0px 15px 15px;
     background-color: var(--buts);

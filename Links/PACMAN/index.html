@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 </head>
 
 <body>
@@ -44,9 +45,6 @@
     </style>
     <div id="menu">
     <span id="text">Счёт: <span id="shet"></span></span>
-    <button onclick="Easy()" id="easy">Easy</button>
-    <button onclick="Normal()" id="normal">Normal</button>
-    <button onclick="Hard()" id="hard">Hard</button>
     </div>
     <canvas id="canvas" width="1350" height="540"></canvas>
     <script>
@@ -59,7 +57,7 @@
         let chet = 0
         let x, y
         let nuli = 0
-        let time = 80
+        let time=80
         char = {
             move: "right",
             x: 0,
@@ -107,16 +105,57 @@
         ]
         ctx.fillStyle = "rgba(0,0,0,0.5)"
         ctx.fillRect(0,0,size,size)
-        function Easy() {
-            time = 80
+        Swal.fire({
+                title: "Выберите сложность:",
+                html: `<button onclick="Easy()" id="easy">Easy</button>
+    <button onclick="Normal()" id="normal">Normal</button>
+    <button onclick="Hard()" id="hard">Hard</button>`,
+    showConfirmButton: false
+            })
+            function Easy() {
+            step()
+           var time = 80
+           var anim =  setTimeout(() => {
+                         requestAnimationFrame(step)
+                    }, time);
+                    Swal.fire({
+                title: "Выберите сложность:",
+                html: `<button onclick="Easy()" id="easy">Easy</button>
+    <button onclick="Normal()" id="normal">Normal</button>
+    <button onclick="Hard()" id="hard">Hard</button>`,
+    showConfirmButton: true
+            })
         }
         function Normal() {
+            step()
             time = 50
+           var anim =  setTimeout(() => {
+                         requestAnimationFrame(step)
+                    }, time);
+                    Swal.fire({
+                title: "Выберите сложность:",
+                html: `<button onclick="Easy()" id="easy">Easy</button>
+    <button onclick="Normal()" id="normal">Normal</button>
+    <button onclick="Hard()" id="hard">Hard</button>`,
+    showConfirmButton: true
+            })
         }
         function Hard() {
+            step()
             time = 0
+            var anim =  setTimeout(() => {
+                         requestAnimationFrame(step)
+                    }, time);
+                    Swal.fire({
+                title: "Выберите сложность:",
+                html: `<button onclick="Easy()" id="easy">Easy</button>
+    <button onclick="Normal()" id="normal">Normal</button>
+    <button onclick="Hard()" id="hard">Hard</button>`,
+    showConfirmButton: true
+            })
         }
-        function step() {
+        function step(){
+            
             ctx.clearRect(0, 0, w, h);
             //Отрисовка препятствий
             for (i = 0; i < stroke.length; i++) {
@@ -852,7 +891,7 @@
                         delete probel
                     }
             //Конец выигрыша
-    anim =  setTimeout(() => {
+   var anim =  setTimeout(() => {
                 requestAnimationFrame(step)
             }, time);
         }
@@ -871,7 +910,6 @@
                 stroke[5][15] = 9
                 stroke[5][16] = 9
             }, 3000);
-        step()
         var probel = 1
         document.addEventListener("keydown",e => {
             if (e.key == "s" || e.key == "ы") {
