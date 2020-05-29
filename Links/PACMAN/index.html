@@ -26,7 +26,7 @@
         }
         #normal {
             height: 40px;
-            width: 80px;
+            width: 100px;
             background-color: yellow;
             border-radius: 5px;
             font-size: 20px;
@@ -41,6 +41,10 @@
         #menu {
             display: flex;
             justify-content: center;
+        }
+        .one{
+            display: flex;
+            justify-content: space-around;
         }
     </style>
     <div id="menu">
@@ -57,7 +61,7 @@
         let chet = 0
         let x, y
         let nuli = 0
-        let time=80
+        let time=200
         char = {
             move: "right",
             x: 0,
@@ -107,51 +111,54 @@
         ctx.fillRect(0,0,size,size)
         Swal.fire({
                 title: "Выберите сложность:",
-                html: `<button onclick="Easy()" id="easy">Easy</button>
+                html: `<div class="one"><button onclick="Easy()" id="easy">Easy</button>
     <button onclick="Normal()" id="normal">Normal</button>
-    <button onclick="Hard()" id="hard">Hard</button>`,
+    <button onclick="Hard()" id="hard">Hard</button></div>`,
     showConfirmButton: false
             })
             function Easy() {
             step()
-           var time = 80
+           var time = 200
            var anim =  setTimeout(() => {
                          requestAnimationFrame(step)
                     }, time);
                     Swal.fire({
                 title: "Выберите сложность:",
-                html: `<button onclick="Easy()" id="easy">Easy</button>
+                html: `<div class="one"><button onclick="Easy()" id="easy">Easy</button>
     <button onclick="Normal()" id="normal">Normal</button>
-    <button onclick="Hard()" id="hard">Hard</button>`,
-    showConfirmButton: true
+    <button onclick="Hard()" id="hard">Hard</button></div>`,
+    timer: 20,
+    showConfirmButton: false
             })
         }
         function Normal() {
             step()
-            time = 50
+            time = 100
            var anim =  setTimeout(() => {
                          requestAnimationFrame(step)
                     }, time);
                     Swal.fire({
                 title: "Выберите сложность:",
-                html: `<button onclick="Easy()" id="easy">Easy</button>
+                html: `<div class="one"><button onclick="Easy()" id="easy">Easy</button>
     <button onclick="Normal()" id="normal">Normal</button>
-    <button onclick="Hard()" id="hard">Hard</button>`,
-    showConfirmButton: true
+    <button onclick="Hard()" id="hard">Hard</button></div>`,
+    timer: 20,
+    showConfirmButton: false
             })
         }
         function Hard() {
             step()
-            time = 0
+            time = 50
             var anim =  setTimeout(() => {
                          requestAnimationFrame(step)
                     }, time);
                     Swal.fire({
                 title: "Выберите сложность:",
-                html: `<button onclick="Easy()" id="easy">Easy</button>
+                html: `<div class="one"><button onclick="Easy()" id="easy">Easy</button>
     <button onclick="Normal()" id="normal">Normal</button>
-    <button onclick="Hard()" id="hard">Hard</button>`,
-    showConfirmButton: true
+    <button onclick="Hard()" id="hard">Hard</button></div>`,
+    showConfirmButton: false,
+    timer: 20
             })
         }
         function step(){
@@ -930,7 +937,7 @@
                     clearTimeout(anim,time)
                 }
                 if(probel%2!=0) {
-                    anim =  setTimeout(() => {
+                   var anim =  setTimeout(() => {
                          requestAnimationFrame(step)
                     }, time);
                 }

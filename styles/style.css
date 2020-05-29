@@ -7,6 +7,10 @@ html,body{
     justify-content: space-between;
     height: 100%;
 }
+#otzivi{
+    display: flex;
+    justify-content: center;
+}
 :root {
     --buts:rgba(178,118,93,0.4);
 }
@@ -127,6 +131,8 @@ html,body{
     color: black;
     font-family: 'Playfair Display', serif;
     position: fixed;
+    text-shadow: 0.5px 0.5px rgba(0,0,0,0.8);
+    margin-left: -50px;
 }
 .page{
     color: black;
@@ -150,6 +156,7 @@ html,body{
     border-radius: 15px;
     background-color: rgba(255,255,255,0.3);
     margin-left: 180px;
+    text-shadow: 0.5px 0.5px rgba(0,0,0,0.8);
 }
 summary{
     outline: none;
@@ -178,6 +185,9 @@ summary{
 @media (max-width:1125px)
 { #logo{display:none;}
 #info{
+    margin-left: 0px;
+}
+#pages{
     margin-left: 0px;
 }
 #forma{

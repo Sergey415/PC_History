@@ -29,30 +29,10 @@ async function aut() {
       // Форма авторизации/регистрации "удаляется"
       forma.style.display = "none"
       // У кнопок статей удаляются атрибуты, вследствии чего они становятся кликабельными
-      but1.removeAttribute("disabled")
-      lik.removeAttribute("disabled")
-      but3.removeAttribute("disabled")
-      otz1.removeAttribute("disabled")
-      lik2.removeAttribute("disabled")
-      otz2.removeAttribute("disabled")
-      lik3.removeAttribute("disabled")
-      otz3.removeAttribute("disabled")
-      but5.removeAttribute("disabled")
       but7.removeAttribute("disabled")
       otz4.removeAttribute("disabled")
-      lik4.removeAttribute("disabled")
       //Меняются курсоры
-      but1.style.cursor = "pointer"
-      but3.style.cursor = "pointer"
-      but5.style.cursor = "pointer"
       but7.style.cursor = "pointer"
-      lik.style.cursor = "pointer"
-      lik2.style.cursor = "pointer"
-      lik3.style.cursor = "pointer"
-      lik4.style.cursor = "pointer"
-      otz1.style.cursor = "text"
-      otz2.style.cursor = "text"
-      otz3.style.cursor = "text"
       otz4.style.cursor = "text"
     }
   }
