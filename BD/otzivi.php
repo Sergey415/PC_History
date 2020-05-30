@@ -10,5 +10,5 @@
     for($i=0;$row = mysqli_fetch_assoc($result);$i++){
     $test[] = $row;
     };
-    print json_encode($test, JSON_UNESCAPED_UNICODE);
+    print json_encode($test, JSON_UNESCAPED_UNICODE); 
 ?>
