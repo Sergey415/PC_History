@@ -16,18 +16,31 @@
         zoom: 70%;
         background-image: url("fon.jpg");
         background-size: cover;
-        background-repeat: no-repeat;
-        background-position: left;
+        background-repeat: repeat;
+        background-position:inherit;
     }
     #h{
         font-size: 55px;
         color: yellow;
     }
+    #menu{
+        background-color: rgba(0,0,0,0.5);
+        width: 300px;
+    }
+    #grand_menu{
+        display: flex;
+        justify-content: center;
+    }
 </style>
 
 <body id="body">
+    <div id="grand_menu">
+            <div id="menu">
     <h1><audio src="Snake.mp3" autoplay="autoplay" controls="controls" loop="loop" id="vol"></audio></h1>
-    <h1 id="h">Счёт:<span id="shet"></span></h1>
+    <h1 id="h">Счёт: <span id="shet"></span></h1>
+    </div>
+    </div>
+
     <canvas width="700px" height="700px" id="canvas"></canvas>
     <script>vol.volume = 0.005</script>
     <script>
