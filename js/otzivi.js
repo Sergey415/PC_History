@@ -12,4 +12,5 @@ async function otzivi4() {
       title: "Ваш отзыв был успешно отправлен:)",
       timer: 2000
     })
+    awai()
   }
