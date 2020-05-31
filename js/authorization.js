@@ -5,9 +5,6 @@ async function aut() {
   // Передаём их в БД
     let r = await fetch("http://BD/autorization.php?login=" + logins + "&&pass=" + password)
     a = (await r.text())
-    //Сохраняем в local storage
-    localStorage.setItem("login", logins)
-    localStorage.setItem("pass", password)
     //Проверяем, правильность введённых логина и пароля
     if (a == "null") {
       //В случае неправилности выводим сообщение об ошибке
@@ -21,6 +18,9 @@ async function aut() {
       setTimeout(() => {
         success.style.display = "none"
       }, 3000);
+       //Сохраняем в local storage
+    localStorage.setItem("login", logins)
+    localStorage.setItem("pass", password)
       // После этого появляется аватар пользователя в виде картинки и кнопка выйти
       block_user.style.display = "flex"
       block_user.style.flexDirection = "column"
