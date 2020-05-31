@@ -1,5 +1,5 @@
 async function aut() {
-  // Получаем значения введённых логина и пароля
+  // Получаем значения введённых логина и парол
     const logins = document.getElementById("login").value
     const password = document.getElementById("pass").value
   // Передаём их в БД
