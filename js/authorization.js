@@ -1,9 +1,9 @@
 async function aut() {
-  // Получаем значения введённых логина и парол
+  // Получаем значения введённых логина и пароля
     const logins = document.getElementById("login").value
     const password = document.getElementById("pass").value
   // Передаём их в БД
-    let r = await fetch("http://BD/autorization.php?login=" + logins + "&&pass=" + password)
+    let r = await fetch("http://bd/autorization.php?login=" + logins + "&&pass=" + password)
     a = (await r.text())
     //Проверяем, правильность введённых логина и пароля
     if (a == "null") {
