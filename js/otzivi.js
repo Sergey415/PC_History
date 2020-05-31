@@ -2,7 +2,7 @@ async function otzivi4() {
   // Объявляем переменную и заносим в неё значение полученное из поля ввода отзыва
     let otzi4 = document.getElementById("otz4").value
     //Отправляем отзыв, логин и пароль пользователя для того, чтобы позже получить его id
-    let r = await fetch("http://bd/Otz.php?" + "otziv=" + otzi4 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/Otz.php?" + "otziv=" + otzi4 + "&&login=" + localStorage.getItem("login") + "&&password=" + localStorage.getItem("pass"))
     a = (await r.text())
     // Очищаем поле ввода отзыва
     otz4.value = ""

@@ -1,5 +1,5 @@
 async function awai() {
-  let r = await fetch("http://bd/otzivi.php")
+  let r = await fetch("http://BD/otzivi.php")
   a = (await r.text())
   a = JSON.parse(a)
   f = ""

@@ -16,7 +16,7 @@ async function registr() {
       localStorage.setItem('pass', passwords)
       proverka()
       // Отправляем их в БД
-      let r = await fetch("http://bd/registration.php?" + "name=" + names + "&&family=" + familys + "&&login=" + logins + "&&pass=" + passwords)
+      let r = await fetch("http://BD/registration.php?" + "name=" + names + "&&family=" + familys + "&&login=" + logins + "&&pass=" + passwords)
       a = (await r.text())
     } else {
       // если поля логина и(или) пароля пустые, то выводим сообщение об ошибке

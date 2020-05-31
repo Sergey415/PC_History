@@ -1,6 +1,6 @@
 // Функция очень похожа на функцию авторизации
 async function proverka() {
-    let r = await fetch("http://bd/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
+    let r = await fetch("http://BD/autorization.php?login=" + localStorage.getItem("login") + "&&pass=" + localStorage.getItem("pass"))
     a = (await r.text())
     if (a != "null" ) {
       block_user.style.display = "flex"
