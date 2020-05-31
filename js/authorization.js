@@ -3,7 +3,7 @@ async function aut() {
     const logins = document.getElementById("login").value
     const password = document.getElementById("pass").value
   // Передаём их в БД
-    let r = await fetch("http://zeref.ru/BD/autorization.php?login=" + logins + "&&pass=" + password)
+    let r = await fetch("http://BD/autorization.php?login=" + logins + "&&pass=" + password)
     a = (await r.text())
     //Проверяем, правильность введённых логина и пароля
     if (a == "null") {
